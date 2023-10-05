@@ -44,13 +44,23 @@ public class UnitController : BaseController
             Managers.UI.MakeWorldUI<UIHpBar>(transform);
         }
 
+        //플레이어 스테이트초기화
+        //_playerState = Managers.Game.Player.GetComponent<PlayerController>().State;
         //적 식별 코루틴 실행
         StartCoroutine(TargetLockCoroutine());
+
+
     }
+
 
     protected override void UpdateAlways()
     {
         base.UpdateAlways();
+
+
+        //플레이어가 죽으면 정지
+        if (Managers.Game.Player.GetComponent<PlayerController>().State == Define.State.Die)
+            UpdateDie();
 
         //타겟 락온 함수를 실행
         if (_onLockTargetFlag)
@@ -81,8 +91,9 @@ public class UnitController : BaseController
         _dir = _destPos.normalized;
         if(dis < _stat.AttackDistance)
         {
-            _stat.OnAttacked(500);
-            return;
+            
+            //_stat.OnAttacked(500);
+            //return;
             State = Define.State.Attack;
             return;
         }
@@ -105,11 +116,14 @@ public class UnitController : BaseController
             State = Define.State.Moving;
             return;
         }
+
     }
 
     protected override void UpdateDie()
     {
         _onLockTargetFlag = false;
+        _unitFlag = false;
+
         base.UpdateDie();
     }
 
@@ -159,6 +173,7 @@ public class UnitController : BaseController
         List<GameObject> targetList = Managers.Game.Monsters;
         if (targetList.Count == 0)
         {
+
             return;
         }
         else
@@ -173,6 +188,18 @@ public class UnitController : BaseController
                 }
             }
         }
+    }
+
+    protected override void UpdateClear()
+    {
+        State = Define.State.Clear;
+        base.UpdateClear();
+    }
+
+    protected override IEnumerator Despwn()
+    {
+        yield return new WaitForSeconds(Define.DESPAWN_DELAY_TIME);
+        Managers.Game.Despawn(Define.Layer.Unit, gameObject);
     }
 }
 

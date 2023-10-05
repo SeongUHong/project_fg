@@ -11,15 +11,13 @@ public class UnitSpawningPool : SpawningPool
         //스폰 지점 초기화
         _spawnPos = Managers.Game.UnitSpawnPos;
 
-        //스폰 액션 추가
-        SpawnAction -= AddSqawnAction;
-        SpawnAction += AddSqawnAction;
     }
 
-    protected override void AddSqawnAction()
+    void Update()
     {
-        while (_reserveCount < _keepObjectCount)
+        while (_reserveCount + _unitCount  <= _keepObjectCount)
         {
+
             StartCoroutine(ReserveSpawn());
         }
     }
@@ -31,6 +29,8 @@ public class UnitSpawningPool : SpawningPool
         yield return new WaitForSeconds(UnityEngine.Random.Range(0, _spawnTime));
         GameObject character = Managers.Game.Spawn(Define.Layer.Unit, "Units/FitnessGirlSniper");
         character.transform.position = Managers.Game.CreatePos(Define.Layer.Unit);
+
+        _reserveCount--;
     }
 
 }

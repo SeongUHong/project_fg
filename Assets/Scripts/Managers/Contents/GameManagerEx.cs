@@ -18,7 +18,7 @@ public class GameManagerEx
     Vector3 _monsterSpawnPos;
 
     //스폰위치 랜덤 범위
-    float _positionVar = 1.0f;
+    //float _positionVar = 3.0f;
 
     //스폰되어 있는 캐릭터
     List<GameObject> _units = new List<GameObject>();
@@ -33,6 +33,9 @@ public class GameManagerEx
     //스폰 되는 지점
     public Vector3 UnitSpawnPos { get { return _unitSpawnPos; } }
     public Vector3 MonsterSpawnPos { get { return _monsterSpawnPos; } }
+
+    //스폰 이벤트
+    public Action<int> AddSqawnAction;
 
     public void Init()
     {
@@ -80,14 +83,22 @@ public class GameManagerEx
     public Vector3 CreatePos(Define.Layer layer)
     {
         Vector3 basePos;
-        
+
+        float spawnRange = 0;
+
         switch (layer)
         {
             case Define.Layer.Unit:
                 basePos = _unitSpawnPos;
+
+                spawnRange = Conf.UNIT_SPAWN_RANGE;
+
                 break;
             case Define.Layer.Monster:
                 basePos = _monsterSpawnPos;
+
+                spawnRange = Conf.MONSTER_SPAWN_RANGE;
+
                 break;
             default:
                 Debug.Log($"Undifned Case : Layer {Enum.GetName(typeof(Define.SceneLocateObject), Define.SceneLocateObject.MonsterCrystal)}");
@@ -96,9 +107,9 @@ public class GameManagerEx
 
         //랜덤 위치 생성
         Vector3 newPos = new Vector3(
-            UnityEngine.Random.Range(basePos.x - _positionVar, basePos.x + _positionVar),
+            UnityEngine.Random.Range(basePos.x - spawnRange, basePos.x + spawnRange),
             basePos.y,
-            UnityEngine.Random.Range(basePos.z - _positionVar, basePos.z + _positionVar)
+            UnityEngine.Random.Range(basePos.z - spawnRange, basePos.z + spawnRange)
         );
 
         return newPos;
@@ -112,9 +123,15 @@ public class GameManagerEx
         {
             case Define.Layer.Unit:
                 _units.Add(go);
+                go.AddComponent<SpawningPool>().AddUnitCount(1);
+                if (AddSqawnAction != null)
+                    AddSqawnAction.Invoke(1);
                 break;
             case Define.Layer.Monster:
                 _monsters.Add(go);
+                go.AddComponent<SpawningPool>().AddMonsterCount(1);
+                if (AddSqawnAction != null)
+                    AddSqawnAction.Invoke(1);
                 break;
         }
         
@@ -126,12 +143,18 @@ public class GameManagerEx
 
     public void Despawn(Define.Layer layer, GameObject go)
     {
+        SpawningPool sp = go.GetComponent<SpawningPool>();
+
         switch (layer)
         {
             case Define.Layer.Unit:
                 if (_units.Contains(go))
                 {
                     _units.Remove(go);
+
+                    sp.MinusUnitCount(1);
+                    if (AddSqawnAction != null)
+                        AddSqawnAction.Invoke(-1);
                 }
                 else
                 {
@@ -143,6 +166,10 @@ public class GameManagerEx
                 if (_monsters.Contains(go))
                 {
                     _monsters.Remove(go);
+
+                    sp.MinusMonsterCount(1);
+                    if (AddSqawnAction != null)
+                        AddSqawnAction.Invoke(-1);
                 }
                 else
                 {

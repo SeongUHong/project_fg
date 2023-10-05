@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 8745310244062576254}
   - component: {fileID: 2255154199824425350}
   m_Layer: 5
-  m_Name: UIHpBar
+  m_Name: UIHPBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b58aa02d04c3cf4b8b13e6f2cfafba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hpPos: {x: 0, y: 0.3, z: 0}
+  _hpPos: {x: 0, y: 1.5, z: 0}
 --- !u!1 &8745310244218623613
 GameObject:
   m_ObjectHideFlags: 0

@@ -124,8 +124,29 @@ public class PlayerController : BaseController
 
     protected override void UpdateMoving()
     {
-            transform.position += _dir * Time.deltaTime * _stat.MoveSpeed;
-            if (_dir != Vector3.zero) transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_dir), 10 * Time.deltaTime);
+        transform.position += _dir * Time.deltaTime * _stat.MoveSpeed;
+        _dir.y = 0;
+        if (_dir != Vector3.zero) transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_dir), 10 * Time.deltaTime);
+
     }
 
+    protected override void UpdateDie()
+    {
+        _aliveFlag = false;
+        base.UpdateDie();
+
+    }
+
+    protected override void UpdateClear()
+    {
+        State = Define.State.Clear;
+        base.UpdateClear();
+    }
+
+    protected override IEnumerator Despwn()
+    {
+        yield return new WaitForSeconds(Define.DESPAWN_DELAY_TIME);
+        Managers.Game.Despawn(Define.Layer.Player, gameObject);
+
+    }
 }

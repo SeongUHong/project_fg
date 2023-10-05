@@ -23,6 +23,7 @@ public class Util
         return transform.gameObject;
     }
 
+
     //해당 이름의 자식 오브첵트 찾기
     //recursive가 true일 경우, 자식의 자식까지 검색
     public static T FindChild<T>(GameObject go, string name = null, bool recursive = false) where T : UnityEngine.Object

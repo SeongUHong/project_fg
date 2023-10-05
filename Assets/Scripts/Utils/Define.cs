@@ -18,6 +18,7 @@ public class Define
         Idle,
         Attack,
         Skill,
+        Clear,
     }
 
     public enum UIEvent
@@ -41,6 +42,7 @@ public class Define
         Unit = 7,
         Monster = 8,
         EnemyStaticObject = 9,
+        Player = 10,
     }
 
     public enum Skill
@@ -49,5 +51,5 @@ public class Define
         Buff,
     }
 
-    public const float DESPAWN_DELAY_TIME = 5.0f;
+    public const float DESPAWN_DELAY_TIME = 1.0f;
 }

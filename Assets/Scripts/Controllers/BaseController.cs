@@ -29,16 +29,19 @@ public abstract class BaseController : MonoBehaviour
 
     protected bool _attackFlag = true;
     protected bool _aliveFlag = true;
-
+    protected bool _unitFlag = true;
+    protected bool _monsterFlag = true;
+    protected bool _continuedFlag = true;
+    protected bool _stopFlag = false;
     public virtual Define.State State
-    {
+    {   
         get { return _state; }
         set
         {
             _state = value;
 
-            if (_anim == null) return;
-
+            if (_anim == null || _stopFlag) return;
+            
             switch (_state)
             {
                 //애니메이션 재생
@@ -46,8 +49,8 @@ public abstract class BaseController : MonoBehaviour
                     _anim.CrossFade("Idle", 0.1f);
                     break;
                 case Define.State.Die:
-                    int ranNom = (int)Random.Range(1.0f, 4.0f);
-                    _anim.CrossFade($"Die{ranNom}", 0.5f);
+                    //int ranNom = (int)Random.Range(1.0f, 4.0f);
+                    _anim.CrossFade($"Die", 0.05f);
                     break;
                 case Define.State.Attack:
                     _anim.CrossFade("Attack", 0.1f);
@@ -56,6 +59,10 @@ public abstract class BaseController : MonoBehaviour
                     _anim.CrossFade("Walk", 0.1f);
                     break;
                 case Define.State.Skill:
+                    break;
+                case Define.State.Clear:
+                    _anim.CrossFade("Clear", 0.3f);
+                    _stopFlag = true;
                     break;
             }
         }
@@ -68,6 +75,8 @@ public abstract class BaseController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (ControllerConf._clearFlag)
+            State = Define.State.Clear;
         switch (State)
         {
             case Define.State.Idle:
@@ -85,9 +94,12 @@ public abstract class BaseController : MonoBehaviour
             case Define.State.Skill:
                 UpdateSkill();
                 break;
+            case Define.State.Clear:
+                UpdateClear();
+                break;
 
         }
-        UpdateAlways();
+            UpdateAlways();
     }
 
     public abstract void Init();
@@ -99,23 +111,37 @@ public abstract class BaseController : MonoBehaviour
 
     protected virtual void UpdateDie() 
     {
-        if (_aliveFlag)
-        {
-            _aliveFlag = false;
-            StartCoroutine(Despwn());
-        }
+
+        StartCoroutine(Despwn());
+
     }
 
     protected virtual void UpdateIdle() {}
     protected virtual void UpdateAttack() { }
     protected virtual void UpdateSkill() { }
     protected virtual void UpdateMoving() { }
+    protected virtual void UpdateClear() { }
 
     //사망시 일정시간 후 비활성화
-    protected IEnumerator Despwn()
+    protected virtual IEnumerator Despwn()
     {
         yield return new WaitForSeconds(Define.DESPAWN_DELAY_TIME);
-        Managers.Game.Despawn(Define.Layer.Unit, gameObject);
+
+/*        if (!_aliveFlag)
+        {
+            Managers.Game.Despawn(Define.Layer.Player, gameObject);
+        }
+        else if (!_monsterFlag)
+        {
+            Managers.Game.Despawn(Define.Layer.Monster, gameObject);
+            _monsterFlag = true;
+        }
+        else if (!_unitFlag)
+        {
+            Managers.Game.Despawn(Define.Layer.Unit, gameObject);
+            _unitFlag = true;
+        }*/
+
     }
 
     protected virtual void OnEnable()

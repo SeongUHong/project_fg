@@ -45,23 +45,24 @@ public class UIHpBar : UIBase
         //hp»ö º¯°æ
         if (_parent.gameObject.layer == (int)Define.Layer.Unit)
         {
-            if (Managers.Game.Player == _parent.gameObject)
-            {
-                GetImage((int)Images.Fill).GetComponent<Image>().color = new Color(117 / 255f, 1, 84 / 255f);
-            }
-            else
-            {
-                GetImage((int)Images.Fill).GetComponent<Image>().color = new Color(84 / 255f, 153 / 255f, 1);
-            }
+
+            GetImage((int)Images.Fill).GetComponent<Image>().color = new Color(84 / 255f, 153 / 255f, 1);
+
         }
         else if (_parent.gameObject.layer == (int)Define.Layer.Monster)
         {
-            GetImage((int)Images.Fill).GetComponent<Image>().color = new Color(1, 83 / 255f, 83 / 255f);
+
+            GetImage((int)Images.Fill).GetComponent<Image>().color = new Color(84 / 255f, 153 / 255f, 1);
+
         }
         else if (_parent.gameObject.layer == (int)Define.Layer.EnemyStaticObject)
         {
             GetImage((int)Images.Fill).GetComponent<Image>().color = new Color(199 / 255f, 83 / 255f, 1);
-            GetGameObject((int)GameObjects.UIHpBar).transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            //GetGameObject((int)GameObjects.UIHpBar).transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        }
+        else if(_parent.gameObject.layer == (int)Define.Layer.Player)
+        {
+            GetImage((int)Images.Fill).GetComponent<Image>().color = new Color(117 / 255f, 1, 84 / 255f);
         }
     }
 

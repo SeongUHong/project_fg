@@ -17,13 +17,21 @@ public class UISceneGame : UIScene
         AttackBtn,
     }
 
-    enum Objects
+    enum Object
     {
         UnitSummonPanel,
+        EnemySummonPanel,
+    }
+
+    enum Object_Enemy
+    {
+        EnemySummonPanel,
     }
 
     //이미지가 생기면 차후 수정
+    string[] _enemyItems = new string[5];
     string[] _unitItems = new string[5];
+    
 
     public override void Init()
     {
@@ -36,15 +44,24 @@ public class UISceneGame : UIScene
         BindEvent(GetButton((int)Buttons.AttackBtn).gameObject, (PointerEventData data) => AttackEvent(data));
 
         //캐릭터 소환창
-        Bind<GameObject>(typeof(Objects));
-        GameObject unitSummonPanel = Get<GameObject>((int)Objects.UnitSummonPanel);
+        Bind<GameObject>(typeof(Object));
+        GameObject unitSummonPanel = Get<GameObject>((int)Object.UnitSummonPanel);
+
+        //적 소환창
+        //Bind<GameObject>(typeof(Object_Enemy));
+        GameObject enemySummonPanel = Get<GameObject>((int)Object.EnemySummonPanel);
 
         //소환창에 캐릭터 버튼을 추가
         //==============수정 필요====================
         //차후 보유 캐릭터를 불러와서 버튼 생성하도록 수정
         _unitItems[0] = "FitnessGirlSniper";
         _unitItems[1] = "OfficeGirlKnight";
-        foreach(string unitItem in _unitItems)
+        _enemyItems[0] = "Green";
+        _enemyItems[1] = "Blue";
+        _enemyItems[2] = "Red";
+        _enemyItems[3] = "Purple";
+
+        foreach (string unitItem in _unitItems)
         {
             UIItemSummonUnit uiItem = Managers.UI.MakeSubItem<UIItemSummonUnit>(unitSummonPanel.transform);
             if (!string.IsNullOrEmpty(unitItem))
@@ -52,7 +69,16 @@ public class UISceneGame : UIScene
                 uiItem.SetName(unitItem);
             }
         }
-        
+
+        foreach (string enemyItem in _enemyItems)
+        {
+            UIItemSummonEnemy uiEnemyItem = Managers.UI.MakeSubItem<UIItemSummonEnemy>(enemySummonPanel.transform);
+            if (!string.IsNullOrEmpty(enemyItem))
+            {
+                uiEnemyItem.SetName(enemyItem);
+            }
+        }
+
     }
 
 }

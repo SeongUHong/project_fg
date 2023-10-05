@@ -51,6 +51,7 @@ public abstract class UIBase : MonoBehaviour
         if (_objects.TryGetValue(typeof(T), out objects) == false) return null;
 
         return objects[index] as T;
+
     }
 
     protected GameObject GetGameObject(int index) { return Get<GameObject>(index); }

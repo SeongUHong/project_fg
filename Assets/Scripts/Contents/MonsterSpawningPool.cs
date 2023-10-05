@@ -5,33 +5,42 @@ using UnityEngine;
 
 public class MonsterSpawningPool : SpawningPool
 {
+    public Vector3 monsterPos;
+
+    //스텟
+    protected Stat _stat;
+
     protected override void Init()
     {
         base.Init();
         //스폰 지점 초기화
-        _spawnPos = Managers.Game.MonsterSpawnPos;
+        //_spawnPos = Managers.Game.MonsterSpawnPos;
 
-        //스폰 액션 추가
-        SpawnAction -= AddSqawnAction;
-        SpawnAction += AddSqawnAction;
     }
 
-    protected override void AddSqawnAction()
+    void Update()
     {
-        while (_reserveCount < _keepObjectCount)
+
+        while (_reservedMonsterCount + _monsterCount <= _keepMonsterCount)
         {
-            StartCoroutine("ReserveSpawn");
+            StartCoroutine(ReserveSpawn());
         }
     }
 
     //예약된 시간 만큼 뒤에 오브젝트 생성
     protected virtual IEnumerator ReserveSpawn()
     {
-        _reserveCount++;
+        _reservedMonsterCount++;
+        
         yield return new WaitForSeconds(UnityEngine.Random.Range(0, _spawnTime));
-        GameObject enemy = Managers.Game.Spawn(Define.Layer.Monster, "Monsters/");
-        enemy.transform.position = _spawnPos;
-        enemy.GetComponent<BaseController>().State = Define.State.Idle;
+
+        //크리스탈 레벨에 따라 다른 용 소환하고싶다
+
+        GameObject monster = Managers.Game.Spawn(Define.Layer.Monster, "Monsters/Purple");
+        Managers.Game.CreatePos(Define.Layer.Monster);
+
+        _reservedMonsterCount--;
     }
+
 
 }

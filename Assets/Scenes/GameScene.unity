@@ -597,11 +597,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8389942292717867843, guid: c2ad179a4de87f94dad9d1edd62dab6f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.34
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8389942292717867843, guid: c2ad179a4de87f94dad9d1edd62dab6f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23.76
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8389942292717867843, guid: c2ad179a4de87f94dad9d1edd62dab6f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -967,6 +967,30 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6084435117828755956, guid: 354593b869b2ae74ab17221bb6499140, type: 3}
   m_PrefabInstance: {fileID: 68735636}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &590512346 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8413805492357886298, guid: 8f070671c95212942aacbfd47250961e, type: 3}
+  m_PrefabInstance: {fileID: 2650192873441692181}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &590512351
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590512346}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &621041526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1129,7 +1153,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 113.972, y: -30, z: 0}
 --- !u!1001 &705544030
 PrefabInstance:
@@ -2618,6 +2642,10 @@ PrefabInstance:
     - target: {fileID: 8413805492357886298, guid: 8f070671c95212942aacbfd47250961e, type: 3}
       propertyPath: m_Name
       value: MonsterCrystal
+      objectReference: {fileID: 0}
+    - target: {fileID: 8413805492357886298, guid: 8f070671c95212942aacbfd47250961e, type: 3}
+      propertyPath: m_TagString
+      value: Crystal
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2650192873507202218, guid: 8f070671c95212942aacbfd47250961e, type: 3}
