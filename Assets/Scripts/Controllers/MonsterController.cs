@@ -55,13 +55,13 @@ public class MonsterController : BaseController
     {
         base.UpdateAlways();
 
-        if(Managers.Game.Player.GetComponent<Stat>().Hp == 0)
+        /*if(Managers.Game.Player.GetComponent<Stat>().Hp == 0)
         {
             State = Define.State.Idle;
             _attackFlag = false;
             _continuedFlag = false;
             return;
-        }
+        }*/
 
 
 
@@ -150,7 +150,8 @@ public class MonsterController : BaseController
     {
         _onLockTargetFlag = false;
         _monsterFlag = false;
-        base.UpdateDie();
+        StartCoroutine(Despwn());
+        //base.UpdateDie();
     }
 
     //지정된 시간만큼 타겟 갱신

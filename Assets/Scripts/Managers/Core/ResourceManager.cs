@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceManager
+public class ResourceManager : ManagerBase
 {
     //오브젝트를 메모리에 로드
     public T Load<T>(string path) where T : Object
@@ -69,5 +69,10 @@ public class ResourceManager
         }
 
         Object.Destroy(go);
+    }
+
+    public override void Init()
+    {
+        throw new System.NotImplementedException();
     }
 }

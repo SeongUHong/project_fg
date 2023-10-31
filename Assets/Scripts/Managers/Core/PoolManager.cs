@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoolManager
+public class PoolManager : ManagerBase
 {
     #region Pool
     class Pool
@@ -82,7 +82,7 @@ public class PoolManager
     Dictionary<string, Pool> _pool = new Dictionary<string, Pool>();
     Transform _root;
 
-    public void Init()
+    public override void Init()
     {
         //풀링 오브젝트를 위해서 삭제되지 않는 부모 오브젝트를 만듦
         if(_root == null)
@@ -146,4 +146,6 @@ public class PoolManager
 
         _pool.Clear();
     }
+
+
 }

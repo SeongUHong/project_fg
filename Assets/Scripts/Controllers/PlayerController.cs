@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
+
 
 public class PlayerController : BaseController
 {
@@ -17,6 +17,8 @@ public class PlayerController : BaseController
     //스킬 이름
     string SKILL_NAME = "PlayerAttack";
 
+    //게임오버 판넬초기화
+    Panel_GameOver panel_GameOver;
     public override void Init()
     {
         //상태 초기화
@@ -56,6 +58,13 @@ public class PlayerController : BaseController
         if (gameObject.GetComponentInChildren<UIHpBar>() == null)
         {
             Managers.UI.MakeWorldUI<UIHpBar>(transform);
+        }
+
+        panel_GameOver = Managers.Game.Panel;
+        //게임오버 판넬추가
+        if (panel_GameOver == null)
+        {
+            Debug.Log("Not Exist GameOver Panel");
         }
 
         //스킬 발사 지점
@@ -133,8 +142,11 @@ public class PlayerController : BaseController
     protected override void UpdateDie()
     {
         _aliveFlag = false;
-        base.UpdateDie();
-
+        //Debug.Log("GameOver");
+        //Stop();
+        StartCoroutine(Despwn());
+        panel_GameOver.Show();
+        //base.UpdateDie();
     }
 
     protected override void UpdateClear()
@@ -147,6 +159,10 @@ public class PlayerController : BaseController
     {
         yield return new WaitForSeconds(Define.DESPAWN_DELAY_TIME);
         Managers.Game.Despawn(Define.Layer.Player, gameObject);
+    }
 
+    public void Stop()
+    {
+        StopAllCoroutines();
     }
 }

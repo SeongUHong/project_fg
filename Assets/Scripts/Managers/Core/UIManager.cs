@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager
+public class UIManager  
 {
     //캔버스 순서
     int _order = 10;
@@ -20,7 +21,9 @@ public class UIManager
             if(root == null)
             {
                 root = new GameObject { name = "@UIRoot" };
+               
             }
+            //root.transform.position = new Vector3(1000f, 0, 0);
             return root;
         }
     }
@@ -32,7 +35,9 @@ public class UIManager
         Canvas canvas = Util.GetOrAddComponent<Canvas>(go);
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         canvas.overrideSorting = true;
-
+        /*canvas.transform.position = new Vector3(1000f, 100f, 0);
+        canvas.planeDistance = 1000f;
+        canvas.scaleFactor = 1000f;*/
         if (sort)
         {
             canvas.sortingOrder = _order;
@@ -68,7 +73,7 @@ public class UIManager
      }
 
     //Scene UI를 실행
-    public T ShowSceneUI<T>(string name = null) where T : UIScene
+    public T ShowSceneUI<T>(Transform parentTransform = null, string name = null) where T : UIScene
     {
         if (string.IsNullOrEmpty(name))
         {
@@ -84,8 +89,9 @@ public class UIManager
         T uiScene = Util.GetOrAddComponent<T>(go);
         _uiScene = uiScene;
 
-        go.transform.SetParent(Root.transform);
 
+        //uiScene.transform.position = new Vector3(100f, 100f, 0);
+        //.transform.localPosition = new Vector3(100f, 100f, 0);
         return uiScene;
 
     }
@@ -108,8 +114,42 @@ public class UIManager
         return Util.GetOrAddComponent<T>(go);
     }
 
+    //팝업UI생성
+    public T MakePopUp <T>(Transform parentTransform = null, string name = null) where T : UIBase
+    {
+        if (string.IsNullOrEmpty(name))
+        {
+            name = typeof(T).Name;
+        }
+        GameObject go = Managers.Resource.Instantiate($"UI/Popup/{name}");
+        if (parentTransform != null)
+        {
+            go.transform.SetParent(parentTransform);
+        }
+
+        return Util.GetOrAddComponent<T>(go);
+    }
+
+    public T MainSceneUI<T>(Transform parentTransform = null, string name = null) where T : UIBase
+    {
+        if (string.IsNullOrEmpty(name))
+        {
+            name = typeof(T).Name;
+        }
+        GameObject go = Managers.Resource.Instantiate($"UI/MainSceneUI/{name}");
+        if (parentTransform != null)
+        {
+            go.transform.SetParent(parentTransform);
+        }
+
+        return Util.GetOrAddComponent<T>(go);
+    }
+
     public void Clear()
     {
     }
+
+
+    private static UIManager instance;
 
 }

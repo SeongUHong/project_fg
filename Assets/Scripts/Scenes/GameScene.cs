@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class GameScene : BaseScene
 {
+    GameScene_Panel start_Panel;
+
     protected override void Init()
     {
         base.Init();
+        Managers.Game.Init();
 
         _sceneType = Define.Scenes.GameScene;
 
@@ -15,20 +18,26 @@ public class GameScene : BaseScene
         //UnitSpawningPool enemySpawningPool = Util.GetOrAddComponent<UnitSpawningPool>(enemy);
         //enemySpawningPool.SetKeepEnemyCount(3);
         GameObject go = new GameObject() { name = "MonsterSpawningPool" };
-        MonsterSpawningPool MonsterSpawningPool = Util.GetOrAddComponent<MonsterSpawningPool>(go);
+        //MonsterSpawningPool MonsterSpawningPool = Util.GetOrAddComponent<MonsterSpawningPool>(go);
         //MonsterSpawningPool.SetKeepMonsterCount(2);
+
+/*        panel = new GameObject() { name = "Panel_GameOver" };
+        panel_GameOver = Util.GetOrAddComponent<Panel_GameOver>(panel);*/
 
 
         //씬 오브젝트 이름 변경
         gameObject.name = System.Enum.GetName(typeof(Define.Scenes), _sceneType);
 
-        //플레이어 생성
+        start_Panel = Managers.Game.StartPanel;
+        start_Panel.Show();
+
+/*        //플레이어 생성
         GameObject player = Managers.Game.InstantiatePlayer();
 
         //카메라 설정
-        Util.GetOrAddComponent<CameraController>(Camera.main.gameObject).SetPlayer(player);
+        Util.GetOrAddComponent<CameraController>(Camera.main.gameObject).SetPlayer(player);*/
 
-       
+
     }
 
     public override void Clear()

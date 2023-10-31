@@ -26,7 +26,7 @@ public  class SpawningPool : MonoBehaviour
 
     //유지할 오브젝트의 수
     [SerializeField]
-    protected int _keepMonsterCount = 5;
+    protected int _keepMonsterCount = 0;
 
     //스폰 장소
     [SerializeField]

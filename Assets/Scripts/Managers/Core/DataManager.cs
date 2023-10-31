@@ -7,7 +7,7 @@ public interface ILoader<key, value>
     Dictionary<key, value> MakeDict();
 }
 
-public class DataManager
+public class DataManager : ManagerBase
 {
     Dictionary<int, data.Stat> _statDict;
 
@@ -27,5 +27,10 @@ public class DataManager
     {
         TextAsset textAsset = Managers.Resource.Load<TextAsset>($"Datas/Stats/{path}");
         return JsonUtility.FromJson<Loader>(textAsset.text);
+    }
+
+    public override void Init()
+    {
+        throw new System.NotImplementedException();
     }
 }

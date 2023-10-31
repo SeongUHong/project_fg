@@ -2006,7 +2006,8 @@ namespace AdvancedPeopleSystem
 
             var meshOriginal = Settings.OriginalMesh.GetComponentsInChildren<SkinnedMeshRenderer>()[0];
             var allBones = meshOriginal.bones;
-            var rootBone = meshOriginal.rootBone;
+            var 
+                Bone = meshOriginal.rootBone;
 
             var bonesThis = GetCharacterPart("Head").skinnedMesh[0].bones;
 

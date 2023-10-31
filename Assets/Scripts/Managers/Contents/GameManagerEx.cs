@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManagerEx
+public class GameManagerEx : ManagerBase
 {
     //GameManager이름을 사용할 수 없는 관계로 Ex를 붙임
 
@@ -25,10 +25,16 @@ public class GameManagerEx
     //스폰되어 있는 적
     List<GameObject> _monsters = new List<GameObject>();
 
+
     public GameObject Player { get { return _player; } }
     public GameObject MonsterCrystal { get { return _monsterCrystal; } }
     public List<GameObject> Units { get { return _units; } }
     public List<GameObject> Monsters { get { return _monsters; } }
+
+    public GameScene_Panel StartPanel { get { return Managers.UI.MakePopUp<GameScene_Panel>(); } }
+    public Panel_GameOver Panel { get { return Managers.UI.MakePopUp<Panel_GameOver>(); } }
+
+    public Main_Panel Main_Panel{ get { return Managers.UI.MainSceneUI<Main_Panel>(); } }
 
     //스폰 되는 지점
     public Vector3 UnitSpawnPos { get { return _unitSpawnPos; } }
@@ -37,7 +43,7 @@ public class GameManagerEx
     //스폰 이벤트
     public Action<int> AddSqawnAction;
 
-    public void Init()
+    public override void Init()
     {
         GameObject unitSpawnPos = GameObject.Find(Enum.GetName(typeof(Define.SceneLocateObject), Define.SceneLocateObject.UnitSpawnSpot));
         if (unitSpawnPos == null)
@@ -66,11 +72,13 @@ public class GameManagerEx
 
     public GameObject InstantiatePlayer()
     {
+
+
         GameObject player = Managers.Resource.Instantiate("Characters/Player");
         if(player == null)
         {
             Debug.Log("Failed Load Player");
-            return null;
+            //return null;
         }
         _player = player;
         

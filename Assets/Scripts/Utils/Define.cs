@@ -52,4 +52,5 @@ public class Define
     }
 
     public const float DESPAWN_DELAY_TIME = 1.0f;
+    public const float RETRY_DELAY_TIME = 2.0f;
 }

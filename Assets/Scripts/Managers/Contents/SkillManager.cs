@@ -2,8 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillManager
+public class SkillManager : ManagerBase
 {
+    public override void Init()
+    {
+        throw new System.NotImplementedException();
+    }
+
     //인수:스킬이름, 좌표, 방향, 레이어, 스킬 타입
     public GameObject SpawnSkill(
         string skillName, Vector3 pos, Vector3 dir, float distance, float speed, int damage, int[] layers, 

@@ -21,6 +21,7 @@ public class UISceneGame : UIScene
     {
         UnitSummonPanel,
         EnemySummonPanel,
+        Panel_GameOver,
     }
 
     enum Object_Enemy
@@ -51,6 +52,10 @@ public class UISceneGame : UIScene
         //Bind<GameObject>(typeof(Object_Enemy));
         GameObject enemySummonPanel = Get<GameObject>((int)Object.EnemySummonPanel);
 
+        //재도전 팝업
+        //GameObject Panel_GameOver = Get<GameObject>((int)Object.Panel_GameOver);
+
+
         //소환창에 캐릭터 버튼을 추가
         //==============수정 필요====================
         //차후 보유 캐릭터를 불러와서 버튼 생성하도록 수정
@@ -78,7 +83,7 @@ public class UISceneGame : UIScene
                 uiEnemyItem.SetName(enemyItem);
             }
         }
-
+        //Panel_GameOver panel_GameOver = Managers.UI.MakePopUp<Panel_GameOver>(Panel_GameOver.transform);
     }
 
 }

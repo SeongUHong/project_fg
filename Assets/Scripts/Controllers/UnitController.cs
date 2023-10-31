@@ -123,8 +123,8 @@ public class UnitController : BaseController
     {
         _onLockTargetFlag = false;
         _unitFlag = false;
-
-        base.UpdateDie();
+        StartCoroutine(Despwn());
+        //base.UpdateDie();
     }
 
     void OnAttack()

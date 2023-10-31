@@ -57,8 +57,8 @@ public class Managers : MonoBehaviour
             //풀 매니저 실행
             s_instance._pool.Init();
 
-            //게임 매니저 실행
-            s_instance._game.Init();
+/*            //게임 매니저 실행
+            s_instance._game.Init();*/
         }
     }
 
