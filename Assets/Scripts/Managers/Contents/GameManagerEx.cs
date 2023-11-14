@@ -33,6 +33,8 @@ public class GameManagerEx : ManagerBase
 
     public GameScene_Panel StartPanel { get { return Managers.UI.MakePopUp<GameScene_Panel>(); } }
     public Panel_GameOver Panel { get { return Managers.UI.MakePopUp<Panel_GameOver>(); } }
+        
+    public Panel_NextStage NextPanel { get { return Managers.UI.MakePopUp<Panel_NextStage>(); } }
 
     public Main_Panel Main_Panel{ get { return Managers.UI.MainSceneUI<Main_Panel>(); } }
 
@@ -68,6 +70,19 @@ public class GameManagerEx : ManagerBase
             return;
         }
         _monsterCrystal = monsterCrystal;
+    }
+
+    public GameObject InstantiateCrystal()
+    {
+        GameObject monsterCrystal = GameObject.Find(Enum.GetName(typeof(Define.SceneLocateObject), Define.SceneLocateObject.MonsterCrystal));
+        if (monsterCrystal == null)
+        {
+            Debug.Log("Failed Load MonsterCrystal");
+            //eturn;
+        }
+        _monsterCrystal = monsterCrystal;
+
+        return monsterCrystal;
     }
 
     public GameObject InstantiatePlayer()

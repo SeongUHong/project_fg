@@ -65,7 +65,6 @@ public class JoyStickHandler : MonoBehaviour,
         {
             _handle.position = _handleFirstPos + dir * dis;
         }
-        
     }
 
     public void OnPointerUp(PointerEventData eventData)

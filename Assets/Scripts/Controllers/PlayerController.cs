@@ -19,10 +19,14 @@ public class PlayerController : BaseController
 
     //게임오버 판넬초기화
     Panel_GameOver panel_GameOver;
+
     public override void Init()
     {
         //상태 초기화
         State = Define.State.Idle;
+
+        //클리어 플래그초기화
+        ControllerConf._clearFlag = false;
 
         //스텟 초기화
         _stat = gameObject.GetComponent<Stat>();
@@ -67,6 +71,7 @@ public class PlayerController : BaseController
             Debug.Log("Not Exist GameOver Panel");
         }
 
+
         //스킬 발사 지점
         _launchPoint = Util.FindChild<Transform>(gameObject, "LaunchPoint", true);
 
@@ -96,6 +101,7 @@ public class PlayerController : BaseController
             State = Define.State.Moving;
         }
         _dir = diretion;
+
     }
 
     void OnJoyStickUpEvent()
@@ -142,11 +148,8 @@ public class PlayerController : BaseController
     protected override void UpdateDie()
     {
         _aliveFlag = false;
-        //Debug.Log("GameOver");
-        //Stop();
         StartCoroutine(Despwn());
         panel_GameOver.Show();
-        //base.UpdateDie();
     }
 
     protected override void UpdateClear()

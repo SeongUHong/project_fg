@@ -56,6 +56,8 @@ public class Stat : MonoBehaviour
             Hp = 0;
             OnDead();
         }
+
+
         return true;
     }
 

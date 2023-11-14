@@ -5,4 +5,5 @@ using UnityEngine;
 public class ControllerConf
 {
     public static bool _clearFlag = false;
+
 }

@@ -12,10 +12,6 @@ public class StaticObjectController : MonoBehaviour
         Init();
     }
 
-    protected virtual void Init() {}
-    public void Destroy()
-    {
-        ControllerConf._clearFlag = true;
-        Managers.Resource.Destroy(gameObject);
-    }
+    public virtual void Init() {}
+    public virtual void Destroy(){}
 }

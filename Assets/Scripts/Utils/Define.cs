@@ -9,6 +9,7 @@ public class Define
         Unknown,
         MainScene,
         GameScene,
+        GameSceneStage2,
     }
 
     public enum State
@@ -53,4 +54,5 @@ public class Define
 
     public const float DESPAWN_DELAY_TIME = 1.0f;
     public const float RETRY_DELAY_TIME = 2.0f;
+    public const float NEXT_DELAY_TIME = 1.0f;
 }

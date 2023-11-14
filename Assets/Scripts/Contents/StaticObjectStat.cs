@@ -7,9 +7,11 @@ public class StaticObjectStat : Stat
 
     protected override void OnDead()
     {
-        if (gameObject.GetComponent<StaticObjectController>() != null)
+
+        if (gameObject.GetComponent<MonsterCrystalController>() != null)
         {
-            gameObject.GetComponent<StaticObjectController>().Destroy();
+            gameObject.GetComponent<MonsterCrystalController>().Destroy();
         }
+
     }
 }

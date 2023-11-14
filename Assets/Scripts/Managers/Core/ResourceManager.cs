@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ResourceManager : ManagerBase
 {
+
     //오브젝트를 메모리에 로드
     public T Load<T>(string path) where T : Object
     {
@@ -58,6 +59,7 @@ public class ResourceManager : ManagerBase
     //오브젝트 삭제
     public void Destroy(GameObject go)
     {
+
         if (go == null) return;
 
         //만약 풀링이 필요한 오브젝트라면 풀링 매니저한테 위탁
@@ -68,11 +70,14 @@ public class ResourceManager : ManagerBase
             return;
         }
 
+
         Object.Destroy(go);
+
+
     }
 
     public override void Init()
     {
-        throw new System.NotImplementedException();
+        throw new System.NotImplementedException(); 
     }
 }

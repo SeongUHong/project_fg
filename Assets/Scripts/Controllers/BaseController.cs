@@ -33,6 +33,9 @@ public abstract class BaseController : MonoBehaviour
     protected bool _monsterFlag = true;
     protected bool _continuedFlag = true;
     protected bool _stopFlag = false;
+
+
+
     public virtual Define.State State
     {   
         get { return _state; }
@@ -70,6 +73,7 @@ public abstract class BaseController : MonoBehaviour
 
     private void Start()
     {
+
         Init();
     }
 

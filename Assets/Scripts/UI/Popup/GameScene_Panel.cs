@@ -22,17 +22,17 @@ public class GameScene_Panel : UIBase
         transform.gameObject.SetActive(true);
     }
 
-    public void OnClick_Game_Start() // '재도전' 버튼을 클릭하며 호출 되어질 함수
+    public void OnClick_Game_Start() // 'start' 버튼을 클릭하며 호출 되어질 함수
     {
 
         //플레이어 생성
         GameObject player = Managers.Game.InstantiatePlayer();
 
+
         //카메라 설정
         Util.GetOrAddComponent<CameraController>(Camera.main.gameObject).SetPlayer(player);
 
         Awake();
-
     }
     public override void Init()
     {

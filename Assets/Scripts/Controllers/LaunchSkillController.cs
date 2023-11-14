@@ -22,6 +22,7 @@ public class LaunchSkillController : MonoBehaviour
     //대상 레이어
     int[] _layers;
 
+
     public void SetSkillStatus(Vector3 startPos, Vector3 dir, float distance, float speed, int damage , int[] layers)
     {
         _startPos = startPos;
@@ -69,6 +70,7 @@ public class LaunchSkillController : MonoBehaviour
         if (other.gameObject.GetComponent<Stat>().OnAttacked(_damage))
         {
             Cleer();
+ 
             Managers.Resource.Destroy(gameObject);
         }
     }
