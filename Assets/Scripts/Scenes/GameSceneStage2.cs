@@ -18,8 +18,8 @@ public class GameSceneStage2 : BaseScene
         //UnitSpawningPool enemySpawningPool = Util.GetOrAddComponent<UnitSpawningPool>(enemy);
         //enemySpawningPool.SetKeepEnemyCount(3);
         GameObject go = new GameObject() { name = "MonsterSpawningPool" };
-        //MonsterSpawningPool MonsterSpawningPool = Util.GetOrAddComponent<MonsterSpawningPool>(go);
-        //MonsterSpawningPool.SetKeepMonsterCount(2);
+        MonsterSpawningPool MonsterSpawningPool = Util.GetOrAddComponent<MonsterSpawningPool>(go);
+        MonsterSpawningPool.SetKeepMonsterCount(0);
 
 
         //씬 오브젝트 이름 변경

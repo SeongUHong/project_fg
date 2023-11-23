@@ -29,6 +29,8 @@ public class Managers : MonoBehaviour
     public static UIManager UI { get { return Instance._ui; } }
     #endregion
 
+    public static float CurrentStage = 1;
+
     void Start()
     {
         Init();

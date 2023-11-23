@@ -18,8 +18,10 @@ public class GameScene : BaseScene
         //UnitSpawningPool enemySpawningPool = Util.GetOrAddComponent<UnitSpawningPool>(enemy);
         //enemySpawningPool.SetKeepEnemyCount(3);
         GameObject go = new GameObject() { name = "MonsterSpawningPool" };
-        //MonsterSpawningPool MonsterSpawningPool = Util.GetOrAddComponent<MonsterSpawningPool>(go);
-        //MonsterSpawningPool.SetKeepMonsterCount(2);
+        MonsterSpawningPool MonsterSpawningPool = Util.GetOrAddComponent<MonsterSpawningPool>(go);
+        MonsterSpawningPool.SetKeepMonsterCount(0);
+
+
 
 /*        panel = new GameObject() { name = "Panel_GameOver" };
         panel_GameOver = Util.GetOrAddComponent<Panel_GameOver>(panel);*/

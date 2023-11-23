@@ -25,9 +25,6 @@ public class PlayerController : BaseController
         //상태 초기화
         State = Define.State.Idle;
 
-        //클리어 플래그초기화
-        ControllerConf._clearFlag = false;
-
         //스텟 초기화
         _stat = gameObject.GetComponent<Stat>();
         if (_stat == null)

@@ -23,12 +23,10 @@ public class Main_Panel : UIBase
         transform.gameObject.SetActive(true);
     }
 
-    public void OnClick_Start() // '재도전' 버튼을 클릭하며 호출 되어질 함수
+    public void OnClick_Start() // 'Start Game' 버튼을 클릭하며 호출 되어질 함수
     {
         SceneManagerEx scene = Managers.Scene;
         scene.LoadScene(Define.Scenes.GameScene); // SceneManager의 LoadScene 함수를 사용하여! 현재 신 'GameScene'을 다시 불러오도록 시킨다.
-        // 같은 신을 다시 불러오면 게임이 재시작 된다.
-
 
         
     }
