@@ -11,7 +11,6 @@ public class MonsterCrystalController : StaticObjectController
     //³Ø½ºÆ® ½ºÅ×ÀÌÁö ÆÇ³Ú
     Panel_NextStage panel_NextStage;
 
-
     public override void Init()
     {
 
@@ -36,7 +35,6 @@ public class MonsterCrystalController : StaticObjectController
     {
         ControllerConf._clearFlag = true;
         transform.gameObject.SetActive(false);
-        Managers.CurrentStage ++;
         panel_NextStage.Show();
         //Managers.Resource.Destroy(gameObject);
     }

@@ -25,6 +25,7 @@ public class GameManagerEx : ManagerBase
     //스폰되어 있는 적
     List<GameObject> _monsters = new List<GameObject>();
 
+
     public GameObject Player { get { return _player; } }
     public GameObject MonsterCrystal { get { return _monsterCrystal; } }
     public List<GameObject> Units { get { return _units; } }
@@ -69,7 +70,6 @@ public class GameManagerEx : ManagerBase
             return;
         }
         _monsterCrystal = monsterCrystal;
-
     }
 
     public GameObject InstantiateCrystal()
@@ -78,7 +78,7 @@ public class GameManagerEx : ManagerBase
         if (monsterCrystal == null)
         {
             Debug.Log("Failed Load MonsterCrystal");
-            //Return;
+            //eturn;
         }
         _monsterCrystal = monsterCrystal;
 
@@ -114,13 +114,13 @@ public class GameManagerEx : ManagerBase
             case Define.Layer.Unit:
                 basePos = _unitSpawnPos;
 
-                spawnRange = Config.Main.UNIT_SPAWN_RANGE;
+                spawnRange = Conf.UNIT_SPAWN_RANGE;
 
                 break;
             case Define.Layer.Monster:
                 basePos = _monsterSpawnPos;
 
-                spawnRange = Config.Main.MONSTER_SPAWN_RANGE;
+                spawnRange = Conf.MONSTER_SPAWN_RANGE;
 
                 break;
             default:
@@ -141,6 +141,7 @@ public class GameManagerEx : ManagerBase
     public GameObject Spawn(Define.Layer layer, string path, Transform parent = null)
     {
         GameObject go = Managers.Resource.Instantiate($"Characters/{path}", parent);
+
         switch (layer)
         {
             case Define.Layer.Unit:

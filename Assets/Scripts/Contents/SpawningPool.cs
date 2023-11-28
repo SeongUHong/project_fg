@@ -34,7 +34,7 @@ public  class SpawningPool : MonoBehaviour
 
     //½ºÆù ÅÒ
     [SerializeField]
-    protected float _spawnTime = 2.0f;
+    protected float _spawnTime = 1.0f;
 
     protected const string RESOURCE_ROOT = "Characters/";
 

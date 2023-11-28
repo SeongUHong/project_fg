@@ -20,11 +20,10 @@ public class MonsterSpawningPool : SpawningPool
 
     void Update()
     {
-        //_reservedMonsterCount++;
+
         while (_reservedMonsterCount + _monsterCount <= _keepMonsterCount)
         {
             StartCoroutine(ReserveSpawn());
-            //Debug.Log(_reservedMonsterCount + _monsterCount) ;
         }
     }
 
@@ -32,32 +31,12 @@ public class MonsterSpawningPool : SpawningPool
     protected virtual IEnumerator ReserveSpawn()
     {
         _reservedMonsterCount++;
-
+        
         yield return new WaitForSeconds(UnityEngine.Random.Range(0, _spawnTime));
 
         //크리스탈 레벨에 따라 다른 용 소환하고싶다
-        float cs = Managers.CurrentStage;
-        GameObject monster;
-        switch (cs)
-        {
-            case 1:
-                monster = Managers.Game.Spawn(Define.Layer.Monster, "Monsters/Green");
-                break;
-            case 2:
-                monster = Managers.Game.Spawn(Define.Layer.Monster, "Monsters/Blue");
 
-                break;
-            case 3:
-                monster = Managers.Game.Spawn(Define.Layer.Monster, "Monsters/Purple");
-
-                break;
-            case 4:
-                monster = Managers.Game.Spawn(Define.Layer.Monster, "Monsters/Red");
-
-                break;
-
-
-        }
+        GameObject monster = Managers.Game.Spawn(Define.Layer.Monster, "Monsters/Purple");
         Managers.Game.CreatePos(Define.Layer.Monster);
 
         _reservedMonsterCount--;
