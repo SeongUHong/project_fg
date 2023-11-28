@@ -498,7 +498,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7248837738709269491, guid: a5fd206be23b03d44a8cad681e4e7bb5, type: 3}
       propertyPath: m_Name
-      value: '@GameScene'
+      value: '@GameSceneStage1'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5fd206be23b03d44a8cad681e4e7bb5, type: 3}
@@ -516,7 +516,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 254785610}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84820a90e4b607842af277aa1f3bb10b, type: 3}
+  m_Script: {fileID: 11500000, guid: aa634ce5f7f5b18499662698c77c4c11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &363370769

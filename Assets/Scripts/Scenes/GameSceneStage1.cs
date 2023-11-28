@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameScene : BaseScene
+public class GameSceneStage1 : BaseScene
 {
     GameScene_Panel start_Panel;
     //유지하고싶은 몬스터수
@@ -12,7 +12,7 @@ public class GameScene : BaseScene
         base.Init();
         Managers.Game.Init();
 
-        _sceneType = Define.Scenes.GameScene;
+        _sceneType = Define.Scenes.GameSceneStage1;
 
         Managers.UI.ShowSceneUI<UISceneGame>();
 

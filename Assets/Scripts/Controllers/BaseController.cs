@@ -79,7 +79,7 @@ public abstract class BaseController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (ControllerConf._clearFlag)
+        if (Conf.Main.CLEAR_FLAG)
             State = Define.State.Clear;
         switch (State)
         {

@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using System;
 
 public class Panel_GameOver : UIBase
 {
-
+    string SCENE_NAME;
     enum Buttons
     {
         retry_btn,
@@ -28,10 +29,31 @@ public class Panel_GameOver : UIBase
     {
         Awake();
         SceneManagerEx scene = Managers.Scene;
-        scene.LoadScene(Define.Scenes.GameScene); // SceneManager의 LoadScene 함수를 사용하여! 현재 신 'GameScene'을 다시 불러오도록 시킨다.
-        // 같은 신을 다시 불러오면 게임이 재시작 된다.
+        switch (Conf.Main.CURRENT_SCENE)
+        {
+            case 1:
+                scene.LoadScene(Define.Scenes.GameSceneStage1); // SceneManager의 LoadScene 함수를 사용하여! 현재 신을 다시 불러오도록 시킨다.
+                                   // 같은 신을 다시 불러오면 게임이 재시작 된다.
+                break;
+            case 2:
+                scene.LoadScene(Define.Scenes.GameSceneStage2);
+                break;
+            case 3:
+                scene.LoadScene(Define.Scenes.MainScene);
+                break;
+            case 4:
+                scene.LoadScene(Define.Scenes.MainScene);
+                break;
+        }
+        
 
     }
+
+    private string Concat(string sCENE_NAME, int cURRENT_SCENE)
+    {
+        throw new NotImplementedException();
+    }
+
     public void OnClick_Main()
     {
         Awake();
@@ -39,6 +61,7 @@ public class Panel_GameOver : UIBase
         scene.LoadScene(Define.Scenes.MainScene);// 메인씬으로 돌아가기
 
         Conf.Main.CURRENT_STAGE = 1;
+        Conf.Main.CURRENT_SCENE = 1;
     }
 
     public override void Init()

@@ -8,7 +8,7 @@ public class Define
     {
         Unknown,
         MainScene,
-        GameScene,
+        GameSceneStage1,
         GameSceneStage2,
     }
 

@@ -33,7 +33,7 @@ public class MonsterCrystalController : StaticObjectController
 
     public override void Destroy()
     {
-        ControllerConf._clearFlag = true;
+        Conf.Main.CLEAR_FLAG = true;
         transform.gameObject.SetActive(false);
         panel_NextStage.Show();
         //Managers.Resource.Destroy(gameObject);

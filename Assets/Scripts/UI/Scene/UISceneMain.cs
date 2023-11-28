@@ -27,6 +27,6 @@ public class UISceneMain : UIScene
     //æ¿ ¿Ãµø
     public void LoadGameScene(PointerEventData data)
     {
-        Managers.Scene.LoadScene(Define.Scenes.GameScene);
+        Managers.Scene.LoadScene(Define.Scenes.GameSceneStage1);
     }
 }
