@@ -37,6 +37,8 @@ public class Panel_GameOver : UIBase
         Awake();
         SceneManagerEx scene = Managers.Scene;
         scene.LoadScene(Define.Scenes.MainScene);// 메인씬으로 돌아가기
+
+        Conf.Main.CURRENT_STAGE = 1;
     }
 
     public override void Init()

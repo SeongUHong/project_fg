@@ -35,8 +35,26 @@ public class MonsterSpawningPool : SpawningPool
         yield return new WaitForSeconds(UnityEngine.Random.Range(0, _spawnTime));
 
         //크리스탈 레벨에 따라 다른 용 소환하고싶다
+        int cs = Conf.Main.CURRENT_STAGE;
+        GameObject monster;
+        switch (cs)
+        {
+            case 1:
+                monster = Managers.Game.Spawn(Define.Layer.Monster, "Monsters/Green");
+                break;
+            case 2:
+                monster = Managers.Game.Spawn(Define.Layer.Monster, "Monsters/Blue");
+                break;
+            case 3:
+                monster = Managers.Game.Spawn(Define.Layer.Monster, "Monsters/Purple");
+                break;
+            case 4:
+                monster = Managers.Game.Spawn(Define.Layer.Monster, "Monsters/Red");
+                break;
 
-        GameObject monster = Managers.Game.Spawn(Define.Layer.Monster, "Monsters/Purple");
+        }
+
+       
         Managers.Game.CreatePos(Define.Layer.Monster);
 
         _reservedMonsterCount--;

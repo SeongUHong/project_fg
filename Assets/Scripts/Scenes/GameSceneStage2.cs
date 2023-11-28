@@ -3,7 +3,10 @@ using UnityEngine;
 public class GameSceneStage2 : BaseScene
 {
     GameScene_Panel start_Panel;
-
+    //유지하고싶은 몬스터수
+    int keep;
+    //실제 적용수치계산 = 몬스터수-1
+    int monsters;
     protected override void Init()
     {
         base.Init();
@@ -18,8 +21,10 @@ public class GameSceneStage2 : BaseScene
         //UnitSpawningPool enemySpawningPool = Util.GetOrAddComponent<UnitSpawningPool>(enemy);
         //enemySpawningPool.SetKeepEnemyCount(3);
         GameObject go = new GameObject() { name = "MonsterSpawningPool" };
-        //MonsterSpawningPool MonsterSpawningPool = Util.GetOrAddComponent<MonsterSpawningPool>(go);
-        //MonsterSpawningPool.SetKeepMonsterCount(2);
+        MonsterSpawningPool MonsterSpawningPool = Util.GetOrAddComponent<MonsterSpawningPool>(go);
+        keep = 2;
+        monsters = keep - 1;
+        MonsterSpawningPool.SetKeepMonsterCount(monsters);
 
 
         //씬 오브젝트 이름 변경

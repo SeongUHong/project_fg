@@ -30,6 +30,8 @@ public class Panel_NextStage : UIBase
         SceneManagerEx scene = Managers.Scene;
         scene.LoadScene(Define.Scenes.GameSceneStage2);
 
+        Conf.Main.CURRENT_STAGE++;
+
     }
     public void OnClick_Main()
     {
