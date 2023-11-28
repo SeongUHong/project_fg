@@ -114,13 +114,13 @@ public class GameManagerEx : ManagerBase
             case Define.Layer.Unit:
                 basePos = _unitSpawnPos;
 
-                spawnRange = Conf.UNIT_SPAWN_RANGE;
+                spawnRange = Conf.Main.UNIT_SPAWN_RANGE;
 
                 break;
             case Define.Layer.Monster:
                 basePos = _monsterSpawnPos;
 
-                spawnRange = Conf.MONSTER_SPAWN_RANGE;
+                spawnRange = Conf.Main.MONSTER_SPAWN_RANGE;
 
                 break;
             default:
