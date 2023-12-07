@@ -229,6 +229,7 @@ GameObject:
   - component: {fileID: 7881096589474864788}
   - component: {fileID: -1305626093121393295}
   - component: {fileID: 277696928216465471}
+  - component: {fileID: 865042335335271506}
   m_Layer: 8
   m_Name: Blue
   m_TagString: Untagged
@@ -349,6 +350,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.9433305, y: 2.9553971, z: 4.7801433}
   m_Center: {x: 0.066538215, y: 2.013408, z: -0.026610613}
+--- !u!195 &865042335335271506
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576721641771146325}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1576721641771147455
 GameObject:
   m_ObjectHideFlags: 0

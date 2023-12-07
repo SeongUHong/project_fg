@@ -10,6 +10,9 @@ public class Define
         MainScene,
         GameSceneStage1,
         GameSceneStage2,
+        GameSceneStage3,
+        GameSceneStage4,
+
     }
 
     public enum State

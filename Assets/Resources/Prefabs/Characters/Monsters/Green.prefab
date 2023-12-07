@@ -1235,6 +1235,7 @@ GameObject:
   - component: {fileID: 6777091234964063346}
   - component: {fileID: 1948991769663917572}
   - component: {fileID: 6396947453409446914}
+  - component: {fileID: 6860598378157429046}
   m_Layer: 8
   m_Name: Green
   m_TagString: Untagged
@@ -1355,6 +1356,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.256561, y: 2.4773154, z: 6.084291}
   m_Center: {x: 0.117518425, y: 2.1386578, z: -0.34998298}
+--- !u!195 &6860598378157429046
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8961113898575572988}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &8961113898575576500
 GameObject:
   m_ObjectHideFlags: 0

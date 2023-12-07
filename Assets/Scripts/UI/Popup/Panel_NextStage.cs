@@ -41,9 +41,12 @@ public class Panel_NextStage : UIBase
                 scene.LoadScene(Define.Scenes.GameSceneStage2);
                 break;
             case 3:
-                scene.LoadScene(Define.Scenes.MainScene);
+                scene.LoadScene(Define.Scenes.GameSceneStage3);
                 break;
             case 4:
+                scene.LoadScene(Define.Scenes.GameSceneStage4);
+                break;
+            default:
                 scene.LoadScene(Define.Scenes.MainScene);
                 break;
         }
@@ -54,7 +57,8 @@ public class Panel_NextStage : UIBase
         Awake();
         SceneManagerEx scene = Managers.Scene;
         scene.LoadScene(Define.Scenes.MainScene);// 메인씬으로 돌아가기
-
+       
+        Conf.Main.CLEAR_FLAG = false;
         Conf.Main.CURRENT_STAGE = 1;
         Conf.Main.CURRENT_SCENE = 1;
     }
