@@ -8,7 +8,6 @@ using System;
 
 public class Panel_GameOver : UIBase
 {
-    string SCENE_NAME;
     enum Buttons
     {
         retry_btn,

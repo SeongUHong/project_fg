@@ -33,10 +33,11 @@ public class GameManagerEx : ManagerBase
 
     public GameScene_Panel StartPanel { get { return Managers.UI.MakePopUp<GameScene_Panel>(); } }
     public Panel_GameOver Panel { get { return Managers.UI.MakePopUp<Panel_GameOver>(); } }
-        
     public Panel_NextStage NextPanel { get { return Managers.UI.MakePopUp<Panel_NextStage>(); } }
-
+    public All_Clear_Panel ClearPanel { get { return Managers.UI.MakePopUp<All_Clear_Panel>(); } }
     public Main_Panel Main_Panel{ get { return Managers.UI.MainSceneUI<Main_Panel>(); } }
+
+
 
     //스폰 되는 지점
     public Vector3 UnitSpawnPos { get { return _unitSpawnPos; } }
