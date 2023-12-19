@@ -38,6 +38,8 @@ public abstract class UIBase : MonoBehaviour
 
             if(objects[i] == null)
             {
+                if ($"{names[i]}" == "UIHpBar" || $"{names[i]}" == "Panel_GameOver")
+                    continue;
                 Debug.Log($"Failed to bind {names[i]}");
             }
         }

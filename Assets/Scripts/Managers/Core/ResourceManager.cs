@@ -39,6 +39,8 @@ public class ResourceManager : ManagerBase
         GameObject original = Load<GameObject>($"Prefabs/{path}");
         if(original == null)
         {
+                if ($"{path}" == "UI/Scene/UISceneMain")
+                return null;
             Debug.Log($"Failed to load Prefab : {path}");
             return null;
         }

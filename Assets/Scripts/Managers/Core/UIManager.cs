@@ -23,7 +23,6 @@ public class UIManager
                 root = new GameObject { name = "@UIRoot" };
                
             }
-            //root.transform.position = new Vector3(1000f, 0, 0);
             return root;
         }
     }
@@ -35,9 +34,6 @@ public class UIManager
         Canvas canvas = Util.GetOrAddComponent<Canvas>(go);
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         canvas.overrideSorting = true;
-        /*canvas.transform.position = new Vector3(1000f, 100f, 0);
-        canvas.planeDistance = 1000f;
-        canvas.scaleFactor = 1000f;*/
         if (sort)
         {
             canvas.sortingOrder = _order;
@@ -83,15 +79,14 @@ public class UIManager
         GameObject go = Managers.Resource.Instantiate($"UI/Scene/{name}");
         if(go == null)
         {
+            if ($"{name}" == "UISceneMain") 
+                return null;
             Debug.Log("Can't Load UI Prefab");
             return null;
         }
         T uiScene = Util.GetOrAddComponent<T>(go);
         _uiScene = uiScene;
 
-
-        //uiScene.transform.position = new Vector3(100f, 100f, 0);
-        //.transform.localPosition = new Vector3(100f, 100f, 0);
         return uiScene;
 
     }
