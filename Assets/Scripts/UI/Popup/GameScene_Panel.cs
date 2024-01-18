@@ -10,6 +10,7 @@ public class GameScene_Panel : UIBase
     enum Buttons
     {
         GameStart_btn,
+        main_btn,
     }
     private void Awake()
     {
@@ -34,9 +35,22 @@ public class GameScene_Panel : UIBase
 
         Awake();
     }
+
+    public void OnClick_Main()
+    {
+        Awake();
+        SceneManagerEx scene = Managers.Scene;
+        scene.LoadScene(Define.Scenes.MainScene);// 메인씬으로 돌아가기
+
+        Conf.Main.CLEAR_FLAG = false;
+        Conf.Main.CURRENT_STAGE = 1;
+        Conf.Main.CURRENT_SCENE = 1;
+    }
+
     public override void Init()
     {
         Bind<Button>(typeof(Buttons));
         BindEvent(GetButton((int)Buttons.GameStart_btn).gameObject, (PointerEventData data) => OnClick_Game_Start());
+        BindEvent(GetButton((int)Buttons.main_btn).gameObject, (PointerEventData data) => OnClick_Main());
     }
 }
