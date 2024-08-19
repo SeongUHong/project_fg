@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 946fc9ffeaf23904d8cec706edb790a7, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 84a69b48aea32084e8811b6b2a741849, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -106,7 +106,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.15
+    agentRadius: 0.1
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.2
@@ -114,7 +114,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.05
+    cellSize: 0.033333335
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 45fc5147da95cc34c9a42bc429fb47aa, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: acd5753a1985b514e93c9a8e0ce95a5a, type: 2}
 --- !u!4 &60667936 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3392613619237056579, guid: 048063979a1b34c44bbe0490807da287, type: 3}
