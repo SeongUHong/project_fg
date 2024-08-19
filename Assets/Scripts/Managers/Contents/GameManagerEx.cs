@@ -252,11 +252,23 @@ public class GameManagerEx
     // 스테이지 클리어 처리
     public void StageClear()
     {
-        // 스테이지ID 증가
-        Managers.Status.IncreaseStageId();
-        // 스킬 포인트 추가
-        Managers.Status.IncreasePoint();
-        // 팝업 활성
-        Managers.UI.ShowPopupUI<UIPopupStageClear>();
+        // 마지막 스테이지인 경우
+        if (Managers.Status.IsFinalStage())
+        {
+            // 상태 초기화
+            Managers.Status.Reset();
+            // 팝업 활성
+            Managers.UI.ShowPopupUI<UIPopupGameClear>();
+        }
+        else
+        {
+            // 스테이지ID 증가
+            Managers.Status.IncreaseStageId();
+            // 스킬 포인트 추가
+            Managers.Status.IncreasePoint();
+
+            // 팝업 활성
+            Managers.UI.ShowPopupUI<UIPopupStageClear>();
+        }
     }
 }

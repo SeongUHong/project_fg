@@ -8,7 +8,7 @@ public class EndingScene : BaseScene
     {
         base.Init();
 
-        _sceneType = Define.Scenes.Ending;
+        _sceneType = Define.Scenes.EndingScene;
 
         Managers.UI.ShowSceneUI<UISceneEnding>();
     }

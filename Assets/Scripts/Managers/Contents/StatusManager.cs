@@ -108,4 +108,10 @@ public class StatusManager
     {
         return new List<int>(_unitLevels.Keys);
     }
+
+    // 최종 스테이지인가
+    public bool IsFinalStage()
+    {
+        return _stageId == Managers.Data.GetFinalStageId();
+    }
 }

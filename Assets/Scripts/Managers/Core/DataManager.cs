@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -108,5 +107,16 @@ public class DataManager
         return monsterDict[monsterId];
     }
 
-    
+    // 마지막 스테이지 취득
+    public int GetFinalStageId()
+    {
+        // Stage폴더 안의 모든 파일 중 가장 수치가 높은 파일명
+        List<int> stageIds = new List<int>();
+        foreach(Object file in Resources.LoadAll(STAGE_DIRECTORY))
+        {
+            stageIds.Add(int.Parse(file.name));
+        }
+
+        return stageIds.Max();
+    }
 }
