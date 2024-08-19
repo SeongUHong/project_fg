@@ -10,6 +10,7 @@ public class Define
         MainScene,
         PrepareScene,
         GameScene,
+        Ending,
     }
 
     public enum State
