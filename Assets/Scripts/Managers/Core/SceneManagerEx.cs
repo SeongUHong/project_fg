@@ -25,7 +25,18 @@ public class SceneManagerEx
 
     string GetSceneName(Define.Scenes type)
     {
-        string name = System.Enum.GetName(typeof(Define.Scenes), type);
+        string name = null;
+
+        // 게임 씬의 경우에는 Stage마다 설정된 맵을 불러옴
+        if (type == Define.Scenes.GameScene)
+        {
+            name = $"{System.Enum.GetName(typeof(Define.Scenes), type)}{Managers.Data.GetStageMapIdByStageId(Managers.Status.StageId)}";
+        }
+        else
+        {
+            name = System.Enum.GetName(typeof(Define.Scenes), type);
+        }
+
         return name;
     }
 

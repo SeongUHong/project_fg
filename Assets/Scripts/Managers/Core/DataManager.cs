@@ -81,6 +81,12 @@ public class DataManager
         return stage;
     }
 
+    // 스테이지ID로 맵ID 취득
+    public int GetStageMapIdByStageId(int stageId)
+    {
+        return GetStageByStageId(stageId).map_id;
+    }
+
     // 스테이지ID로 스테이지 몬스터 정보를 취득
     public List<data.StageSpawnMonster> GetStageSpawnMonsterByStageId(int stageId)
     {

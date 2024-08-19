@@ -10,6 +10,7 @@ namespace data
     public class Stage
     {
         public List<StageSpawnMonster> spawn_monsters;
+        public int map_id;
     }
 
     [Serializable]
