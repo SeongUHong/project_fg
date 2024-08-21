@@ -20,7 +20,7 @@ public class LaunchSkillController : MonoBehaviour
     int _damage;
 
     //대상 레이어
-    int[] _layers;
+    int _layerBit;
 
     public void SetSkillStatus(Vector3 startPos, Vector3 dir, float distance, float speed, int damage , int[] layers)
     {
@@ -29,11 +29,22 @@ public class LaunchSkillController : MonoBehaviour
         _distance = distance;
         _speed = speed;
         _damage = damage;
-        _layers = layers;
-    }
 
-    void Start()
-    {
+        // 대상 레이어를 비트로 산출
+        int layerBit = 0;
+        foreach (int layer in layers)
+        {
+            if (layer == 1)
+            {
+                layerBit |= 1;
+                continue;
+            }
+
+            int bit = 1 << (layer - 1);
+            layerBit |= bit;
+        }
+
+        _layerBit = layerBit;
     }
 
     void Update()
@@ -54,23 +65,33 @@ public class LaunchSkillController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         //대상 레이어가 아니면 리턴
-        int targetLayer = other.gameObject.layer;
-        bool canAttack = false;
-        foreach (int layer in _layers)
-        {
-            if(targetLayer == layer)
-            {
-                canAttack = true;
-                break;
-            }
-        }
-        if (canAttack == false) return;
+        if (!IsTarget(other.gameObject.layer))
+            return;
 
         if (other.gameObject.GetComponent<Stat>().OnAttacked(_damage))
         {
             Cleer();
             Managers.Resource.Destroy(gameObject);
         }
+    }
+
+    // 스킬 피격 대상인가
+    public bool IsTarget(int layer)
+    {
+        int targetBit = 0;
+        if (layer == 1)
+        {
+            targetBit = 1;
+        }
+        else
+        {
+            targetBit = 1 << (layer - 1);
+        }
+
+        if ((_layerBit & targetBit) > 0)
+            return true;
+
+        return false;
     }
 
     void Cleer()

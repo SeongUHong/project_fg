@@ -36,12 +36,6 @@ public class Define
         EnemyStaticObject = 9,
     }
 
-    public enum Skill
-    {
-        Launch,
-        Buff,
-    }
-
     public const float DESPAWN_DELAY_TIME = 5.0f;
 
     // 첫 스테이지ID

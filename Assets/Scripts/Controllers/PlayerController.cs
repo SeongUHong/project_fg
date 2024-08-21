@@ -8,9 +8,6 @@ public class PlayerController : BaseController
     //스킬 발사 지점
     Transform _launchPoint;
 
-    //공격대상 레이어
-    int[] _layers;
-
     //스킬 이름
     string SKILL_NAME = "PlayerAttack";
 
@@ -20,9 +17,6 @@ public class PlayerController : BaseController
 
         //스킬 발사 지점
         _launchPoint = Util.FindChild<Transform>(gameObject, "LaunchPoint", true);
-
-        //공격대상 레이어 지정
-        _layers = new int[]{ (int)Define.Layer.Monster, (int)Define.Layer.EnemyStaticObject};
 
         //버튼 액션 추가
         AddAction();
@@ -72,7 +66,14 @@ public class PlayerController : BaseController
 
     void OnAttack()
     {
-        Managers.Skill.SpawnSkill(SKILL_NAME, _launchPoint.position, _dir, _stat.AttackDistance, _stat.ProjectileSpeed, _stat.Offence, _layers);
+        Managers.Skill.SpawnLaunchSkill(
+            SKILL_NAME,
+            _launchPoint.position,
+            _dir,
+            _stat.AttackDistance,
+            _stat.ProjectileSpeed,
+            _stat.Offence,
+            new int[] { (int)Define.Layer.Monster, (int)Define.Layer.EnemyStaticObject });
     }
 
     protected override void UpdateMoving()
