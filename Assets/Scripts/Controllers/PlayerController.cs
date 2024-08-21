@@ -5,9 +5,6 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : BaseController
 {
-    //플레이푳E컨트롤러 UI가 들어있는 컴포넌트
-    UIScene _uiScene;
-
     //스킬 발사 지점
     Transform _launchPoint;
 
@@ -20,14 +17,6 @@ public class PlayerController : BaseController
     protected override void Init()
     {
         SetCreatureDefault();
-
-        //컨트롤러UI 초기화
-        _uiScene = Managers.UI.UIScene;
-
-        if (_uiScene == null || _uiScene.JoyStickHandler == null)
-        {
-            Debug.Log("Not Exist Player Controller UI");
-        }
 
         //스킬 발사 지점
         _launchPoint = Util.FindChild<Transform>(gameObject, "LaunchPoint", true);
@@ -47,12 +36,12 @@ public class PlayerController : BaseController
     //Invoke로 사용할 수 있게 각종 버튼에 액션 추가
     void AddAction()
     {
-        _uiScene.JoyStickHandler.OnDragHandler -= OnJoyStickDragEvent;
-        _uiScene.JoyStickHandler.OnDragHandler += OnJoyStickDragEvent;
-        _uiScene.JoyStickHandler.OnUpHandler -= OnJoyStickUpEvent;
-        _uiScene.JoyStickHandler.OnUpHandler += OnJoyStickUpEvent;
-        _uiScene.OnAttackBtnDownHandler -= OnAttackBtnDownEvent;
-        _uiScene.OnAttackBtnDownHandler += OnAttackBtnDownEvent;
+        Managers.Input.JoyStickHandler.OnDragHandler -= OnJoyStickDragEvent;
+        Managers.Input.JoyStickHandler.OnDragHandler += OnJoyStickDragEvent;
+        Managers.Input.JoyStickHandler.OnUpHandler -= OnJoyStickUpEvent;
+        Managers.Input.JoyStickHandler.OnUpHandler += OnJoyStickUpEvent;
+        Managers.Input.AttackEvent -= OnAttackBtnDownEvent;
+        Managers.Input.AttackEvent += OnAttackBtnDownEvent;
     }
 
     //조이스틱의 방향을 인자로 받음

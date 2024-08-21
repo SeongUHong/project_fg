@@ -26,11 +26,11 @@ public class UISceneGame : UIScene
     {
         //조이스틱에 핸들러 추가
         Bind<Image>(typeof(Images));
-        BindJoyStickEvent(GetImage((int)Images.JoyStick).gameObject, GetImage((int)Images.Handle).gameObject);
+        Managers.Input.BindJoyStickEvent(GetImage((int)Images.JoyStick).gameObject, GetImage((int)Images.Handle).gameObject);
         
         //기본공격 버튼
         Bind<Button>(typeof(Buttons));
-        BindEvent(GetButton((int)Buttons.AttackBtn).gameObject, (PointerEventData data) => AttackEvent(data));
+        BindEvent(GetButton((int)Buttons.AttackBtn).gameObject, (PointerEventData data) => Managers.Input.ExecAttackEvent(data));
 
         //캐릭터 소환창
         Bind<GameObject>(typeof(Objects));
