@@ -11,10 +11,12 @@ public class Managers : MonoBehaviour
     GameManagerEx _game = new GameManagerEx();
     SkillManager _skill = new SkillManager();
     StatusManager _status = new StatusManager();
+    InputManager _input = new InputManager();
 
     public static GameManagerEx Game { get { return Instance._game; } }
     public static SkillManager Skill { get { return Instance._skill; } }
     public static StatusManager Status { get { return Instance._status; } }
+    public static InputManager Input { get { return Instance._input; } }
     #endregion
 
     #region Core
