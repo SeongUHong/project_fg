@@ -22,7 +22,7 @@ public class LaunchSkillController : MonoBehaviour
     //대상 레이어
     int _layerBit;
 
-    public void SetSkillStatus(Vector3 startPos, Vector3 dir, float distance, float speed, int damage , int[] layers)
+    public void SetSkillStatus(Vector3 startPos, Vector3 dir, float distance, float speed, int damage , Define.Layer[] layers)
     {
         _startPos = startPos;
          _dir = dir;

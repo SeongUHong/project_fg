@@ -73,7 +73,7 @@ public class PlayerController : BaseController
             _stat.AttackDistance,
             _stat.ProjectileSpeed,
             _stat.Offence,
-            new int[] { (int)Define.Layer.Monster, (int)Define.Layer.EnemyStaticObject });
+            new Define.Layer[] { Define.Layer.Monster, Define.Layer.EnemyStaticObject });
     }
 
     protected override void UpdateMoving()
