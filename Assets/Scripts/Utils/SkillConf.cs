@@ -1,7 +1,7 @@
 ﻿public class SkillConf
 {
-    public enum Skill
+    public enum LaunchSkill
     {
-        Default = 1,
+        Attack = 1,
     }
 }

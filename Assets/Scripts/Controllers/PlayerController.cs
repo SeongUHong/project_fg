@@ -8,9 +8,6 @@ public class PlayerController : BaseController
     //스킬 발사 지점
     Transform _launchPoint;
 
-    //스킬 이름
-    string SKILL_NAME = "PlayerAttack";
-
     protected override void Init()
     {
         SetCreatureDefault();
@@ -59,21 +56,22 @@ public class PlayerController : BaseController
         if (_attackFlag)
         {
             State = Define.State.Attack;
-            _attackFlag = false;
-            StartCoroutine(AttackCoolTime());
         }
     }
 
     void OnAttack()
     {
         Managers.Skill.SpawnLaunchSkill(
-            SKILL_NAME,
+            SkillConf.LaunchSkill.Attack,
             _launchPoint.position,
             _dir,
             _stat.AttackDistance,
             _stat.ProjectileSpeed,
             _stat.Offence,
             new Define.Layer[] { Define.Layer.Monster, Define.Layer.EnemyStaticObject });
+
+        _attackFlag = false;
+        StartCoroutine(AttackCoolTime());
     }
 
     protected override void UpdateMoving()
