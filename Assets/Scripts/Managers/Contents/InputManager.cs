@@ -1,13 +1,15 @@
-using System;
+ï»¿using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class InputManager
 {
-    //Á¶ÀÌ½ºÆ½ ÇÚµé·¯
+    //ì¡°ì´ìŠ¤í‹± í•¸ë“¤ëŸ¬
     JoyStickHandler _joyStickHandler;
-    //°ø°İ¹öÆ° ÇÚµé·¯
+    // ãƒ‡ãƒ•ã‚©æ”»æ’ƒ ã‚¹ã‚­ãƒ«ã‚¤ãƒ™ãƒ³ãƒˆ
     Action _attackEvent;
+    // FlameBall ã‚¹ã‚­ãƒ«ã‚¤ãƒ™ãƒ³ãƒˆ
+    Action _flameBallEvent;
 
     public JoyStickHandler JoyStickHandler
     {
@@ -25,8 +27,9 @@ public class InputManager
     }
 
     public Action AttackEvent { get { return _attackEvent; } set { _attackEvent = value; } }
+    public Action FlameBallEvent { get { return _flameBallEvent; } set { _flameBallEvent = value; } }
 
-    //Á¶ÀÌ½ºÆ½, ÇÚµéÀ» ÀÎ¼ö·Î ¹ŞÀ½
+    //ì¡°ì´ìŠ¤í‹±, í•¸ë“¤ì„ ì¸ìˆ˜ë¡œ ë°›ìŒ
     public void BindJoyStickEvent(GameObject joyStick, GameObject handle)
     {
         JoyStickHandler joyStickHandler = joyStick.AddComponent<JoyStickHandler>();
@@ -34,12 +37,20 @@ public class InputManager
         joyStickHandler.Handle = Util.GetOrAddComponent<RectTransform>(handle);
     }
 
-    //°ø°İ¹öÆ°
+    //ê³µê²©ë²„íŠ¼
     public void ExecAttackEvent(PointerEventData data)
     {
         if (_attackEvent != null)
         {
             _attackEvent.Invoke();
         }
+    }
+
+    public void ExecFlameBallEvent(PointerEventData data)
+    {
+        if (_flameBallEvent == null)
+            return;
+
+        _flameBallEvent.Invoke();
     }
 }

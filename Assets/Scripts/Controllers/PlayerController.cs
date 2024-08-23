@@ -1,3 +1,4 @@
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,26 +6,32 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : BaseController
 {
-    //½ºÅ³ ¹ß»ç ÁöÁ¡
+    //ìŠ¤í‚¬ ë°œì‚¬ ì§€ì 
     Transform _launchPoint;
+    Action _activeSkillEvent;
+
+    // ã‚¹ã‚­ãƒ«ã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ 
+    [SerializeField]
+    bool _flameBallFlag = true;
+    float _flameBallCoolTime = SkillConf.FLAME_BALL_COOLTIME;
 
     protected override void Init()
     {
         SetCreatureDefault();
 
-        //½ºÅ³ ¹ß»ç ÁöÁ¡
+        //ìŠ¤í‚¬ ë°œì‚¬ ì§€ì 
         _launchPoint = Util.FindChild<Transform>(gameObject, "LaunchPoint", true);
 
-        //¹öÆ° ¾×¼Ç Ãß°¡
+        //ë²„íŠ¼ ì•¡ì…˜ ì¶”ê°€
         AddAction();
     }
 
     protected override string DieAnimName()
     {
-        return $"Die{Random.Range(1, 5)}";
+        return $"Die{UnityEngine.Random.Range(1, 5)}";
     }
 
-    //Invoke·Î »ç¿ëÇÒ ¼ö ÀÖ°Ô °¢Á¾ ¹öÆ°¿¡ ¾×¼Ç Ãß°¡
+    //Invokeë¡œ ì‚¬ìš©í•  ìˆ˜ ìˆê²Œ ê°ì¢… ë²„íŠ¼ì— ì•¡ì…˜ ì¶”ê°€
     void AddAction()
     {
         Managers.Input.JoyStickHandler.OnDragHandler -= OnJoyStickDragEvent;
@@ -33,9 +40,11 @@ public class PlayerController : BaseController
         Managers.Input.JoyStickHandler.OnUpHandler += OnJoyStickUpEvent;
         Managers.Input.AttackEvent -= OnAttackBtnDownEvent;
         Managers.Input.AttackEvent += OnAttackBtnDownEvent;
+        Managers.Input.FlameBallEvent -= OnFlameBallSkillBtnDownEvent;
+        Managers.Input.FlameBallEvent += OnFlameBallSkillBtnDownEvent;
     }
 
-    //Á¶ÀÌ½ºÆ½ÀÇ ¹æÇâÀ» ÀÎÀÚ·Î ¹ŞÀ½
+    //ì¡°ì´ìŠ¤í‹±ì˜ ë°©í–¥ì„ ì¸ìë¡œ ë°›ìŒ
     void OnJoyStickDragEvent(Vector3 diretion)
     {
         if (State != Define.State.Moving)
@@ -50,19 +59,49 @@ public class PlayerController : BaseController
         State = Define.State.Idle;
     }
 
-    //°ø°İ¹öÆ° Å¬¸¯½Ã
+    //ê³µê²©ë²„íŠ¼ í´ë¦­ì‹œ
     void OnAttackBtnDownEvent()
     {
         if (_attackFlag)
         {
+            _activeSkillEvent = AttackEvent;
+            State = Define.State.Attack;
+        }
+    }
+
+    void OnFlameBallSkillBtnDownEvent()
+    {
+        if (_flameBallFlag)
+        {
+            _activeSkillEvent = FlameBallSkillEvent;
             State = Define.State.Attack;
         }
     }
 
     void OnAttack()
     {
+        _activeSkillEvent.Invoke();
+    }
+
+    void AttackEvent()
+    {
         Managers.Skill.SpawnLaunchSkill(
             SkillConf.LaunchSkill.Attack,
+            _launchPoint.position,
+            _dir,
+            _stat.AttackDistance,
+            _stat.ProjectileSpeed,
+            _stat.Offence,
+            new Define.Layer[] { Define.Layer.Monster, Define.Layer.EnemyStaticObject });
+
+        _attackFlag = false;
+        StartCoroutine(AttackCoolTime());
+    }
+
+    void FlameBallSkillEvent()
+    {
+        Managers.Skill.SpawnLaunchSkill(
+            SkillConf.LaunchSkill.FlameBall,
             _launchPoint.position,
             _dir,
             _stat.AttackDistance,
@@ -88,10 +127,10 @@ public class PlayerController : BaseController
         State = Define.State.Die;
         _aliveFlag = false;
 
-        // »ç¸Á ÈÄ¿¡´Â µÚÀÇ Ä³¸¯ÅÍ¿¡ ¹æÇØ°¡ µÇÁö ¾Êµµ·Ï Äİ¶óÀÌ´õ¸¦ ÇØÁ¦
+        // ì‚¬ë§ í›„ì—ëŠ” ë’¤ì˜ ìºë¦­í„°ì— ë°©í•´ê°€ ë˜ì§€ ì•Šë„ë¡ ì½œë¼ì´ë”ë¥¼ í•´ì œ
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
 
-        // °ÔÀÓ¿À¹ö ÆÇ³Ú È°¼º
+        // ê²Œì„ì˜¤ë²„ íŒë„¬ í™œì„±
         Managers.Game.Gameover();
     }
 

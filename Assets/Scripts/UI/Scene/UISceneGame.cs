@@ -14,6 +14,7 @@ public class UISceneGame : UIScene
     enum Buttons
     {
         AttackBtn,
+        FlameBallBtn,
     }
 
     enum Objects
@@ -31,6 +32,8 @@ public class UISceneGame : UIScene
         //기본공격 버튼
         Bind<Button>(typeof(Buttons));
         BindEvent(GetButton((int)Buttons.AttackBtn).gameObject, (PointerEventData data) => Managers.Input.ExecAttackEvent(data));
+        // FlameBall
+        BindEvent(GetButton((int)Buttons.FlameBallBtn).gameObject, (PointerEventData data) => Managers.Input.ExecFlameBallEvent(data));
 
         //캐릭터 소환창
         Bind<GameObject>(typeof(Objects));

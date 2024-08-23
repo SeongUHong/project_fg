@@ -5,19 +5,19 @@ using UnityEngine;
 public class LaunchSkillController : MonoBehaviour
 {
     //발사한 위치
-    Vector3 _startPos;
+    protected Vector3 _startPos;
 
     //방향
-    Vector3 _dir;
+    protected Vector3 _dir;
 
     //사거리
-    float _distance;
+    protected float _distance;
 
     //투사체 속도
-    float _speed;
+    protected float _speed;
 
     //피해량
-    int _damage;
+    protected int _damage;
 
     //대상 레이어
     int _layerBit;
@@ -62,7 +62,7 @@ public class LaunchSkillController : MonoBehaviour
         gameObject.GetComponent<Rigidbody>().AddForce(_dir * _speed, ForceMode.VelocityChange);
     }
 
-    void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         //대상 레이어가 아니면 리턴
         if (!IsTarget(other.gameObject.layer))
@@ -94,7 +94,7 @@ public class LaunchSkillController : MonoBehaviour
         return false;
     }
 
-    void Cleer()
+    protected void Cleer()
     {
         gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
