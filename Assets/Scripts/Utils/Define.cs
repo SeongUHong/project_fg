@@ -55,4 +55,7 @@ public class Define
 
     // 캐릭터 소환에 필요한 게이지
     public const float SUMMON_COST = 10.0f;
+
+    // 최소 데미지
+    public const int MIN_DAMAGE = 1;
 }

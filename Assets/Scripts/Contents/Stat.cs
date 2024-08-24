@@ -48,14 +48,18 @@ public class Stat : MonoBehaviour
 
     public virtual bool OnAttacked(int pureDamage)
     {
-        int damage = Mathf.Max(0, pureDamage - Defence);
-        if (Hp <= 0) return false;
+        if (Hp <= 0) 
+            return false;
+
+        int damage = Mathf.Max(Define.MIN_DAMAGE, pureDamage - Defence);
         Hp -= damage;
+
         if (Hp <= 0)
         {
             Hp = 0;
             OnDead();
         }
+
         return true;
     }
 
