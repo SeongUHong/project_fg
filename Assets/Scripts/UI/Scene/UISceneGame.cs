@@ -15,6 +15,7 @@ public class UISceneGame : UIScene
     {
         AttackBtn,
         FlameBallBtn,
+        RangeSkillBtn,
     }
 
     enum Objects
@@ -34,6 +35,8 @@ public class UISceneGame : UIScene
         BindEvent(GetButton((int)Buttons.AttackBtn).gameObject, (PointerEventData data) => Managers.Input.ExecAttackEvent(data));
         // FlameBall
         BindEvent(GetButton((int)Buttons.FlameBallBtn).gameObject, (PointerEventData data) => Managers.Input.ExecFlameBallEvent(data));
+        // RangeSkill
+        BindEvent(GetButton((int)Buttons.RangeSkillBtn).gameObject, (PointerEventData data) => Managers.Input.ExecRangeSkillEvent(data));
 
         //캐릭터 소환창
         Bind<GameObject>(typeof(Objects));

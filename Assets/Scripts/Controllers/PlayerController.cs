@@ -10,10 +10,14 @@ public class PlayerController : BaseController
     Transform _launchPoint;
     Action _activeSkillEvent;
 
-    // スキルクールタイム
-    [SerializeField]
+    // スキルクールタイムフラグ
     bool _flameBallFlag = true;
+    [SerializeField]
     float _flameBallCoolTime = SkillConf.FLAME_BALL_COOLTIME;
+
+    bool _rangeSkillFlag = true;
+    [SerializeField]
+    float _rangeSkillCoolTime = SkillConf.DUMMY_RANGE_COOLTIME;
 
     protected override void Init()
     {
@@ -42,6 +46,8 @@ public class PlayerController : BaseController
         Managers.Input.AttackEvent += OnAttackBtnDownEvent;
         Managers.Input.FlameBallEvent -= OnFlameBallSkillBtnDownEvent;
         Managers.Input.FlameBallEvent += OnFlameBallSkillBtnDownEvent;
+        Managers.Input.RangeSkillEvent -= OnRangeSkillBtnDownEvent;
+        Managers.Input.RangeSkillEvent += OnRangeSkillBtnDownEvent;
     }
 
     //조이스틱의 방향을 인자로 받음
@@ -78,6 +84,15 @@ public class PlayerController : BaseController
         }
     }
 
+    void OnRangeSkillBtnDownEvent()
+    {
+        if (_rangeSkillFlag)
+        {
+            _activeSkillEvent = RangeSkillEvent;
+            State = Define.State.Attack;
+        }
+    }
+
     void OnAttack()
     {
         _activeSkillEvent.Invoke();
@@ -109,8 +124,22 @@ public class PlayerController : BaseController
             _stat.Offence,
             new Define.Layer[] { Define.Layer.Monster, Define.Layer.EnemyStaticObject });
 
-        _attackFlag = false;
+        _flameBallFlag = false;
         StartCoroutine(AttackCoolTime());
+    }
+
+    void RangeSkillEvent()
+    {
+        Managers.Skill.SpawnRnageSkill(
+            SkillConf.RangeSkill.DummyRange,
+            gameObject,
+            SkillConf.DUMMY_RANGE_ACTIVE_TIME,
+            SkillConf.DUMMY_RANGE_DAMAGE_TICK_INTERVAL,
+            8,
+            new Define.Layer[] { Define.Layer.Monster });
+
+        _rangeSkillFlag = false;
+        StartCoroutine(RangeSkillCoolTime());
     }
 
     protected override void UpdateMoving()
@@ -132,6 +161,12 @@ public class PlayerController : BaseController
 
         // 게임오버 판넬 활성
         Managers.Game.Gameover();
+    }
+
+    IEnumerator RangeSkillCoolTime()
+    {
+        yield return new WaitForSeconds(_rangeSkillCoolTime);
+        _rangeSkillFlag = true;
     }
 
 }
