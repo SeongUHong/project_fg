@@ -1,18 +1,20 @@
 ﻿public class SkillConf
 {
-    public enum LaunchSkill
+    public enum Skill
     {
         Attack = 1,
         FlameBall,
+        DummyRange,
+    }
+
+    public enum LaunchSkill
+    {
+        Attack = 1,
+        FlameBall = Skill.FlameBall,
     }
 
     public enum RangeSkill
     {
-        DummyRange = 1,
+        DummyRange = Skill.DummyRange,
     }
-
-    public const float FLAME_BALL_COOLTIME = 3.0f;
-    public const float DUMMY_RANGE_ACTIVE_TIME = 3.0f;
-    public const float DUMMY_RANGE_DAMAGE_TICK_INTERVAL = 0.2f;
-    public const float DUMMY_RANGE_COOLTIME = 3.0f;
 }

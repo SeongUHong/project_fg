@@ -12,12 +12,7 @@ public class PlayerController : BaseController
 
     // スキルクールタイムフラグ
     bool _flameBallFlag = true;
-    [SerializeField]
-    float _flameBallCoolTime = SkillConf.FLAME_BALL_COOLTIME;
-
     bool _rangeSkillFlag = true;
-    [SerializeField]
-    float _rangeSkillCoolTime = SkillConf.DUMMY_RANGE_COOLTIME;
 
     protected override void Init()
     {
@@ -115,13 +110,15 @@ public class PlayerController : BaseController
 
     void FlameBallSkillEvent()
     {
+        data.Skill skill = Managers.Data.GetSKillBySkillIdAndLevel((int)SkillConf.Skill.FlameBall, 1);
+
         Managers.Skill.SpawnLaunchSkill(
             SkillConf.LaunchSkill.FlameBall,
             _launchPoint.position,
             _dir,
-            _stat.AttackDistance,
-            _stat.ProjectileSpeed,
-            _stat.Offence,
+            skill.distance,
+            skill.move_speed,
+            skill.offence,
             new Define.Layer[] { Define.Layer.Monster, Define.Layer.EnemyStaticObject });
 
         _flameBallFlag = false;
@@ -130,12 +127,14 @@ public class PlayerController : BaseController
 
     void RangeSkillEvent()
     {
+        data.Skill skill = Managers.Data.GetSKillBySkillIdAndLevel((int)SkillConf.Skill.DummyRange, 1);
+
         Managers.Skill.SpawnRnageSkill(
             SkillConf.RangeSkill.DummyRange,
             gameObject,
-            SkillConf.DUMMY_RANGE_ACTIVE_TIME,
-            SkillConf.DUMMY_RANGE_DAMAGE_TICK_INTERVAL,
-            8,
+            skill.active_time,
+            skill.tick_interval,
+            skill.offence,
             new Define.Layer[] { Define.Layer.Monster });
 
         _rangeSkillFlag = false;
@@ -165,7 +164,7 @@ public class PlayerController : BaseController
 
     IEnumerator RangeSkillCoolTime()
     {
-        yield return new WaitForSeconds(_rangeSkillCoolTime);
+        yield return new WaitForSeconds(8.0f);
         _rangeSkillFlag = true;
     }
 

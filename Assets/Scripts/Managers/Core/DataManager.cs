@@ -12,6 +12,7 @@ public class DataManager
     const string ROOT_DIRECTORY = "Datas/";
     const string STAT_DIRECTORY = ROOT_DIRECTORY + "Stats/";
     const string STAGE_DIRECTORY = ROOT_DIRECTORY + "Stages/";
+    const string SKILL_DIRECTORY = ROOT_DIRECTORY + "Skills/";
 
     public string GetJsonText(string path)
     {
@@ -118,5 +119,19 @@ public class DataManager
         }
 
         return stageIds.Max();
+    }
+
+    // 스킬ID와 레벨로 스킬정보 취득
+    public data.Skill GetSKillBySkillIdAndLevel(int skillId, int level)
+    {
+        string skillName = Util.NumToEnumName<SkillConf.Skill>(skillId);
+        Dictionary<int, data.Skill> skillDict = LoadJson<data.SkillLoader, int, data.Skill>(SKILL_DIRECTORY + skillName).MakeDict();
+        if (skillDict.Count == 0)
+        {
+            Debug.Log($"Not exist data : {SKILL_DIRECTORY + skillName}");
+            return null;
+        }
+
+        return skillDict[level];
     }
 }

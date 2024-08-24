@@ -1,0 +1,31 @@
+{
+	"skills": [
+		{
+			"level":"1",
+			"offence":"8",
+			"move_speed":"",
+			"distance": "",
+			"active_time": "3.0",
+			"tick_interval": "0.2",
+			"cooltime": "6.0"
+		},
+		{
+			"level":"2",
+			"offence":"14",
+			"move_speed":"",
+			"distance": "",
+			"active_time": "4.0",
+			"tick_cooltime": "0.2",
+			"cooltime": "6.0"
+		},
+		{
+			"level":"3",
+			"offence":"20",
+			"move_speed":"",
+			"distance": "",
+			"active_time": "5.0",
+			"tick_interval": "0.2",
+			"cooltime": "6.0"
+		}
+	]
+}
