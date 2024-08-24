@@ -122,7 +122,7 @@ public class PlayerController : BaseController
             new Define.Layer[] { Define.Layer.Monster, Define.Layer.EnemyStaticObject });
 
         _flameBallFlag = false;
-        StartCoroutine(AttackCoolTime());
+        StartCoroutine(FlameBallCoolTime(skill.cooltime));
     }
 
     void RangeSkillEvent()
@@ -138,7 +138,7 @@ public class PlayerController : BaseController
             new Define.Layer[] { Define.Layer.Monster });
 
         _rangeSkillFlag = false;
-        StartCoroutine(RangeSkillCoolTime());
+        StartCoroutine(RangeSkillCoolTime(skill.cooltime));
     }
 
     protected override void UpdateMoving()
@@ -162,10 +162,15 @@ public class PlayerController : BaseController
         Managers.Game.Gameover();
     }
 
-    IEnumerator RangeSkillCoolTime()
+    IEnumerator RangeSkillCoolTime(float cooltime)
     {
-        yield return new WaitForSeconds(8.0f);
+        yield return new WaitForSeconds(cooltime);
         _rangeSkillFlag = true;
     }
 
+    IEnumerator FlameBallCoolTime(float cooltime)
+    {
+        yield return new WaitForSeconds(cooltime);
+        _flameBallFlag = true;
+    }
 }
