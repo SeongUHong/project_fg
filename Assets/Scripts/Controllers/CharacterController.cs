@@ -36,41 +36,6 @@ public abstract class CharacterController : BaseController
         StartCoroutine(TargetLockCoroutine());
     }
 
-    // 애니메이션이 있는 오브젝트 디폴트 설정
-    protected override void SetCreatureDefault()
-    {
-        //상태 초기화
-        State = Define.State.Idle;
-
-        //애니메이터
-        _anim = gameObject.GetComponent<Animator>();
-        if (_anim == null)
-        {
-            Debug.Log("Can't Load Animator Component");
-        }
-
-        //리지드바디
-        _rig = gameObject.GetComponent<Rigidbody>();
-        if (_anim == null)
-        {
-            Debug.Log("Can't Load Rigidbody Component");
-        }
-
-        //스텟 추가
-        _stat = transform.GetComponent<Stat>();
-        if (_stat == null)
-        {
-            Debug.Log("Can't Load Stat Component");
-        }
-        _stat.SetStat(Managers.Data.GetStatByLevel($"{gameObject.name}Stat", GetLevel()));
-
-        //HP바 추가
-        if (gameObject.GetComponentInParent<UIHpBar>() == null)
-        {
-            Managers.UI.MakeWorldUI<UIHpBar>(transform);
-        }
-    }
-
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -272,6 +237,4 @@ public abstract class CharacterController : BaseController
     protected abstract List<GameObject> Targets();
     // ID를 반환
     protected abstract int GetId();
-    // 레벨을 반환
-    protected abstract int GetLevel();
 }

@@ -30,6 +30,11 @@ public class PlayerController : BaseController
         return $"Die{UnityEngine.Random.Range(1, 5)}";
     }
 
+    protected override int GetLevel()
+    {
+        return Managers.Status.PlayerLevel;
+    }
+
     //Invoke로 사용할 수 있게 각종 버튼에 액션 추가
     void AddAction()
     {

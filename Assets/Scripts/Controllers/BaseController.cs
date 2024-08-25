@@ -116,7 +116,7 @@ public abstract class BaseController : MonoBehaviour
         {
             Debug.Log("Can't Load Stat Component");
         }
-        _stat.SetStat(Managers.Data.GetStatByLevel($"{gameObject.name}Stat", 1));
+        _stat.SetStat(Managers.Data.GetStatByLevel($"{gameObject.name}Stat", GetLevel()));
 
         //HP바 추가
         if (gameObject.GetComponentInParent<UIHpBar>() == null)
@@ -124,6 +124,7 @@ public abstract class BaseController : MonoBehaviour
             Managers.UI.MakeWorldUI<UIHpBar>(transform);
         }
     }
+
 
     protected virtual void UpdateAlways() 
     {
@@ -181,6 +182,8 @@ public abstract class BaseController : MonoBehaviour
     // 추상 메서드
     // ====================================
     protected abstract void Init();
+    // 레벨을 반환
+    protected abstract int GetLevel();
 
     // ====================================
     // 필수는 아니지만
