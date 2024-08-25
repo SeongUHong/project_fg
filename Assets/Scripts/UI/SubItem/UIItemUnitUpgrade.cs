@@ -65,10 +65,10 @@ public class UIItemUnitUpgrade : UIBase
     public void UpdateElements()
     {
         UpdateLevelTxt();
-        UpdateUpgradeTxt();
+        UpdateUpgradeBtn();
     }
 
-    private void UpdateUpgradeTxt()
+    private void UpdateUpgradeBtn()
     {
         // 포인트가 없을 경우
         if (Managers.Status.Point <= 0)

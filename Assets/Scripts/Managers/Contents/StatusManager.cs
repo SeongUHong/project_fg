@@ -156,4 +156,22 @@ public class StatusManager
 
         return level;
     }
+
+    // 사용 가능한 스킬인가
+    public bool IsAvailableSkill(int skillId)
+    {
+        if (_skillLevels.ContainsKey(skillId))
+            return true;
+
+        return false;
+    }
+
+    // 최고 레벨의 스킬인가
+    public bool IsMaxLevelSkill(int skillId)
+    {
+        if (_skillLevels[skillId] >= Managers.Data.GetSkillMaxLevel(skillId))
+            return true;
+
+        return false;
+    }
 }

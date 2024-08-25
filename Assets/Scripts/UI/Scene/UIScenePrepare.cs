@@ -9,6 +9,7 @@ public class UIScenePrepare : UIScene
     enum Objects
     {
         UnitListPanel,
+        SkillListPanel,
     }
 
     enum Texts
@@ -26,6 +27,7 @@ public class UIScenePrepare : UIScene
     }
 
     List<UIItemUnitUpgrade> _upgradeItemUIs = new List<UIItemUnitUpgrade>();
+    List<UIItemSkillUpgrade> _upgradeSkillUIs = new List<UIItemSkillUpgrade>();
 
     public override void Init()
     {
@@ -47,6 +49,25 @@ public class UIScenePrepare : UIScene
 
             item.SetName(unit.ToString());
             item.SetUnitId((int)unit);
+            item.SetParent(this);
+        }
+
+        // 스킬 업그레이드 UI 전개
+        GameObject skillListPanel = Get<GameObject>((int)Objects.SkillListPanel);
+
+        foreach (SkillConf.Skill skill in Enum.GetValues(typeof(SkillConf.Skill)))
+        {
+            // TODO
+            // SkillConf.Skill에서 Attack제거
+            if (skill == SkillConf.Skill.Attack)
+                continue;
+
+            UIItemSkillUpgrade item = Managers.UI.MakeSubItem<UIItemSkillUpgrade>(skillListPanel.transform);
+            // 서브UI를 이곳에서 관리 
+            _upgradeSkillUIs.Add(item);
+
+            item.SetName(skill.ToString());
+            item.SetSkillId((int)skill);
             item.SetParent(this);
         }
 

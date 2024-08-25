@@ -142,7 +142,7 @@ public class DataManager
     }
 
     // 스킬ID와 레벨로 스킬정보 취득
-    public data.Skill GetSKillBySkillIdAndLevel(int skillId, int level)
+    public Dictionary<int, data.Skill> GetSKillDict(int skillId)
     {
         string skillName = Util.NumToEnumName<SkillConf.Skill>(skillId);
         Dictionary<int, data.Skill> skillDict = LoadJson<data.SkillLoader, int, data.Skill>(SKILL_DIRECTORY + skillName).MakeDict();
@@ -152,6 +152,19 @@ public class DataManager
             return null;
         }
 
+        return skillDict;
+    }
+
+    // 스킬ID와 레벨로 스킬정보 취득
+    public data.Skill GetSKillBySkillIdAndLevel(int skillId, int level)
+    {
+        Dictionary<int, data.Skill> skillDict = GetSKillDict(skillId);
         return skillDict[level];
+    }
+
+    public int GetSkillMaxLevel(int skillId)
+    {
+        Dictionary<int, data.Skill> skillDict = GetSKillDict(skillId);
+        return skillDict.Keys.Max();
     }
 }
