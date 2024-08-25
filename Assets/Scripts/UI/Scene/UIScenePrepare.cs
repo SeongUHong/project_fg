@@ -57,11 +57,6 @@ public class UIScenePrepare : UIScene
 
         foreach (SkillConf.Skill skill in Enum.GetValues(typeof(SkillConf.Skill)))
         {
-            // TODO
-            // SkillConf.Skill에서 Attack제거
-            if (skill == SkillConf.Skill.Attack)
-                continue;
-
             UIItemSkillUpgrade item = Managers.UI.MakeSubItem<UIItemSkillUpgrade>(skillListPanel.transform);
             // 서브UI를 이곳에서 관리 
             _upgradeSkillUIs.Add(item);

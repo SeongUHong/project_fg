@@ -2,14 +2,12 @@
 {
     public enum Skill
     {
-        Attack = 1,
-        FlameBall,
+        FlameBall = 1,
         DummyRange,
     }
 
     public enum LaunchSkill
     {
-        Attack = 1,
         FlameBall = Skill.FlameBall,
     }
 

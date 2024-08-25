@@ -100,8 +100,7 @@ public class PlayerController : BaseController
 
     void AttackEvent()
     {
-        Managers.Skill.SpawnLaunchSkill(
-            SkillConf.LaunchSkill.Attack,
+        Managers.Skill.SpawnPlayerAttack(
             _launchPoint.position,
             _dir,
             _stat.AttackDistance,
