@@ -58,7 +58,7 @@ public class UIItemUnitUpgrade : UIBase
         UpdateElements();
 
         // 스킬 포인트에 변화가 생겼을 경우 다른 UI요소들도 갱신함
-        _parentUI.ExecUpgrade();
+        _parentUI.UpdateAllUIs();
     }
 
     // 각 요소들을 최신 상태로 갱신함

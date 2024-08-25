@@ -54,7 +54,7 @@ public class UIScenePrepare : UIScene
         BindEvent(GetButton((int)Buttons.PlayerLevelUpBtn).gameObject, LevelUpPlayer);
 
         // 스킬 포인트
-        UpdatePoint();
+        UpdateAllUIs();
     }
 
     //씬 이동
@@ -67,11 +67,11 @@ public class UIScenePrepare : UIScene
     public void LevelUpPlayer(PointerEventData data)
     {
         Managers.Status.LevelUpPlayer();
-        ExecUpgrade();
+        UpdateAllUIs();
     }
 
-    // 업그레이드를 실행했을 때의 처리
-    public void ExecUpgrade()
+    // 모든 UI를 최신화
+    public void UpdateAllUIs()
     {
         UpdatePoint();
         UpdateUIs();
