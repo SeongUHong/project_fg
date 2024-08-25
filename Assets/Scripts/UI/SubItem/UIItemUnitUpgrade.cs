@@ -101,7 +101,7 @@ public class UIItemUnitUpgrade : UIBase
         {
             if (Managers.Status.IsMaxLevelUnit(_unitId))
             {
-                GetText((int)Texts.UnitLevel).text = UIConf.SKILL_GET_TXT;
+                GetText((int)Texts.UnitLevel).text = UIConf.SKILL_LEVEL_MAX_TXT;
             }
             else
             {
