@@ -18,12 +18,6 @@ public class UIItemUnitUpgrade : UIBase
         UnitLevel,
     }
 
-    string _activeUnitUpgradeTxt = "Level Up";
-    string _inactiveUnitUpgradeTxt = "Get";
-
-    string _inactiveUnitLevelTxt = "None";
-    string _unitMaxLevelTxt = "Max";
-
     // 유닛 이미지가 생길때까지 임시로 이름을 표시
     // ======================차후 수정==================
     int _unitId;
@@ -86,7 +80,7 @@ public class UIItemUnitUpgrade : UIBase
 
         if (Managers.Status.IsAvailableUnit(_unitId))
         {
-            GetText((int)Texts.UnitUpgradeTxt).text = _activeUnitUpgradeTxt;
+            GetText((int)Texts.UnitUpgradeTxt).text = UIConf.SKILL_LEVEL_UP_TXT;
             if (Managers.Status.IsMaxLevelUnit(_unitId))
             {
                 Button btn = GetButton((int)Buttons.UnitUpgradeBtn);
@@ -96,7 +90,7 @@ public class UIItemUnitUpgrade : UIBase
         }
         else
         {
-            GetText((int)Texts.UnitUpgradeTxt).text = _inactiveUnitUpgradeTxt;
+            GetText((int)Texts.UnitUpgradeTxt).text = UIConf.SKILL_GET_TXT;
         }
     }
 
@@ -107,7 +101,7 @@ public class UIItemUnitUpgrade : UIBase
         {
             if (Managers.Status.IsMaxLevelUnit(_unitId))
             {
-                GetText((int)Texts.UnitLevel).text = _unitMaxLevelTxt;
+                GetText((int)Texts.UnitLevel).text = UIConf.SKILL_GET_TXT;
             }
             else
             {
@@ -116,7 +110,7 @@ public class UIItemUnitUpgrade : UIBase
         }
         else
         {
-            GetText((int)Texts.UnitLevel).text = _inactiveUnitLevelTxt;
+            GetText((int)Texts.UnitLevel).text = UIConf.SKILL_NO_LEVEL_TXT;
         }
     }
 }
