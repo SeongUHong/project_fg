@@ -69,7 +69,11 @@ public class StatusManager
     // 플레이어 레벨이 최대치인가
     public bool IsMaxPlayerLevel()
     {
-        // TODO
+        if (_playerLevel >= Managers.Data.GetPlayerMaxLevel())
+        {
+            return true;
+        }
+
         return false;
     }
 

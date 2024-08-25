@@ -42,6 +42,26 @@ public class DataManager
         return statDict[level];
     }
 
+    // 레벨별 플레이어 Stat
+    public Dictionary<int, data.Stat> GetPlayerStatDict()
+    {
+        string path = "PlayerStat";
+        Dictionary<int, data.Stat> statDict = LoadJson<data.StatLoader, int, data.Stat>(STAT_DIRECTORY + path).MakeDict();
+        if (statDict.Count == 0)
+        {
+            Debug.Log($"Not exist data : {STAT_DIRECTORY + path}");
+            return null;
+        }
+
+        return statDict;
+    }
+
+    public int GetPlayerMaxLevel()
+    {
+        Dictionary<int, data.Stat> statDict = GetPlayerStatDict();
+        return statDict.Keys.Max();
+    }
+
     public Dictionary<int, data.Stat> GetUnitStatDic(int unitId)
     {
         string unitName = ((CharacterConf.Unit)unitId).ToString();
