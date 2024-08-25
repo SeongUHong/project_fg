@@ -174,4 +174,31 @@ public class StatusManager
 
         return false;
     }
+
+    // 스킬 레벨업
+    public int LevelUpSkill(int skillId)
+    {
+        // 비활성 스킬이면 가장 낮은 레벨 취득
+        if (!IsAvailableSkill(skillId))
+        {
+            _skillLevels[skillId] = SkillConf.MIN_LEVEL;
+            DecreasePoint();
+
+            return _skillLevels[skillId];
+        }
+
+        int level = _skillLevels[skillId];
+        // 이미 최대 레벨에 도달한 경우 레벨업 불가
+        if (IsMaxLevelSkill(skillId))
+        {
+            Debug.Log($"Skill is aleady max level. (skillId: {skillId})");
+            return level;
+        }
+
+        // 레벨업
+        _skillLevels[skillId] = ++level;
+        DecreasePoint();
+
+        return level;
+    }
 }

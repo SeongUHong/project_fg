@@ -17,4 +17,6 @@
     {
         DummyRange = Skill.DummyRange,
     }
+
+    public const int MIN_LEVEL = 1;
 }

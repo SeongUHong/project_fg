@@ -49,8 +49,7 @@ public class UIItemSkillUpgrade : UIBase
 
     public void UpgradeSkill(PointerEventData data)
     {
-        // TODO
-        // スキルレベルアップ
+        Managers.Status.LevelUpSkill(_skillId);
         UpdateElements();
 
         // スキルポイントに変化があったので、全てのUIを更新する
