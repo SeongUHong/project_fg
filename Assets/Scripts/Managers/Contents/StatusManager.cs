@@ -9,16 +9,22 @@ public class StatusManager
     int _stageId;
     // 스킬 업그레이드 포인트
     int _point;
+    // 플레이어 레벨
+    int _playerLevel;
     // 유닛ID 별 레벨
     Dictionary<int, int> _unitLevels = new Dictionary<int, int>();
+    // 스킬ID 별 레벨
+    Dictionary<int, int> _skillLevels = new Dictionary<int, int>();
 
     public int StageId { get { return _stageId; } }
     public int Point { get { return _point; } }
+    public int PlayerLevel { get { return _playerLevel; } }
 
     public void Init()
     {
         _stageId = Define.FIRST_STAGE_ID;
         _point = Define.POINT_PER_STAGE;
+        _playerLevel = Define.MIN_PLAYER_LEVEL;
     }
 
     public void Reset()
@@ -26,6 +32,7 @@ public class StatusManager
         _stageId = Define.FIRST_STAGE_ID;
         _point = Define.POINT_PER_STAGE;
         _unitLevels.Clear();
+        _playerLevel = Define.MIN_PLAYER_LEVEL;
     }
 
     // 포인트 소비
@@ -44,6 +51,26 @@ public class StatusManager
     public void IncreaseStageId()
     {
         _stageId++;
+    }
+
+    // 플레이어 레벨 증가
+    public void IncreasePlayerLevel()
+    {
+        _playerLevel++;
+    }
+
+    // 플레이어 레벨 업
+    public void LevelUpPlayer()
+    {
+        DecreasePoint();
+        IncreasePlayerLevel();
+    }
+
+    // 플레이어 레벨이 최대치인가
+    public bool IsMaxPlayerLevel()
+    {
+        // TODO
+        return false;
     }
 
     // 사용 가능한 유닛인가
@@ -113,5 +140,16 @@ public class StatusManager
     public bool IsFinalStage()
     {
         return _stageId == Managers.Data.GetFinalStageId();
+    }
+
+    public int GetSkillLevel(int skillId)
+    {
+        int level = 0;
+        if (!_skillLevels.TryGetValue(skillId, out level))
+        {
+            Debug.Log($"Inactive Skill. (skillId: {skillId})");
+        }
+
+        return level;
     }
 }

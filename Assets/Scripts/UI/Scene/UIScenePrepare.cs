@@ -15,11 +15,14 @@ public class UIScenePrepare : UIScene
     {
         StageIdTxt,
         UpgradePoint,
+        PlayerLevel,
+        PlayerLevelUpTxt,
     }
 
     enum Buttons
     {
         NextStageBtn,
+        PlayerLevelUpBtn,
     }
 
     List<UIItemUnitUpgrade> _upgradeItemUIs = new List<UIItemUnitUpgrade>();
@@ -48,6 +51,7 @@ public class UIScenePrepare : UIScene
         }
 
         BindEvent(GetButton((int)Buttons.NextStageBtn).gameObject, LoadGameScene);
+        BindEvent(GetButton((int)Buttons.PlayerLevelUpBtn).gameObject, LevelUpPlayer);
 
         // 스킬 포인트
         UpdatePoint();
@@ -59,10 +63,18 @@ public class UIScenePrepare : UIScene
         Managers.Scene.LoadScene(Define.Scenes.GameScene);
     }
 
+    // 플레이어 레벨 업
+    public void LevelUpPlayer(PointerEventData data)
+    {
+        Managers.Status.LevelUpPlayer();
+        ExecUpgrade();
+    }
+
     // 업그레이드를 실행했을 때의 처리
     public void ExecUpgrade()
     {
         UpdatePoint();
+        UpdateUIs();
         UpdateSubItemUIs();
     }
 
@@ -70,6 +82,52 @@ public class UIScenePrepare : UIScene
     public void UpdatePoint()
     {
         Get<Text>((int)Texts.UpgradePoint).text = Managers.Status.Point.ToString();
+    }
+
+    // UI 표시를 갱신함
+    public void UpdateUIs()
+    {
+        UpdateBtnTxts();
+        UpdateSkillLevelTxts();
+    }
+
+    // UI의 문구를 갱신함
+    public void UpdateBtnTxts()
+    {
+        // 포인트가 없을 경우
+        if (Managers.Status.Point <= 0)
+        {
+            Button btn = GetButton((int)Buttons.PlayerLevelUpBtn);
+            btn.interactable = false;
+            RemoveEvent(btn.gameObject);
+        }
+
+        // 플레이어 레벨
+        if (Managers.Status.IsMaxPlayerLevel())
+        {
+            Button btn = GetButton((int)Buttons.PlayerLevelUpBtn);
+            btn.interactable = false;
+            RemoveEvent(btn.gameObject);
+            GetText((int)Texts.PlayerLevelUpTxt).text = UIConf.SKILL_LEVEL_MAX_TXT;
+        }
+        else
+        {
+            GetText((int)Texts.PlayerLevelUpTxt).text = UIConf.SKILL_LEVEL_UP_TXT;
+        }
+    }
+
+    // 레벨 표시를 갱신함
+    public void UpdateSkillLevelTxts()
+    {
+        // 플레이어 레벨
+        if (Managers.Status.IsMaxPlayerLevel())
+        {
+            GetText((int)Texts.PlayerLevel).text = UIConf.SKILL_LEVEL_MAX_TXT;
+        }
+        else
+        {
+            GetText((int)Texts.PlayerLevel).text = Managers.Status.PlayerLevel.ToString();
+        }
     }
 
     // 각 UI아이템들을 갱신함
