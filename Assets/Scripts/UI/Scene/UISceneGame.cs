@@ -33,10 +33,26 @@ public class UISceneGame : UIScene
         //기본공격 버튼
         Bind<Button>(typeof(Buttons));
         BindEvent(GetButton((int)Buttons.AttackBtn).gameObject, (PointerEventData data) => Managers.Input.ExecAttackEvent(data));
+
+        // 각 버튼에 스킬 이벤트를 바인드
         // FlameBall
-        BindEvent(GetButton((int)Buttons.FlameBallBtn).gameObject, (PointerEventData data) => Managers.Input.ExecFlameBallEvent(data));
+        if (Managers.Status.IsAvailableSkill((int)SkillConf.Skill.FlameBall))
+        {
+            BindEvent(GetButton((int)Buttons.FlameBallBtn).gameObject, (PointerEventData data) => Managers.Input.ExecFlameBallEvent(data));
+        }
+        else
+        {
+            GetButton((int)Buttons.FlameBallBtn).interactable = false;
+        }
         // RangeSkill
-        BindEvent(GetButton((int)Buttons.RangeSkillBtn).gameObject, (PointerEventData data) => Managers.Input.ExecRangeSkillEvent(data));
+        if (Managers.Status.IsAvailableSkill((int)SkillConf.Skill.DummyRange))
+        {
+            BindEvent(GetButton((int)Buttons.RangeSkillBtn).gameObject, (PointerEventData data) => Managers.Input.ExecRangeSkillEvent(data));
+        }
+        else
+        {
+            GetButton((int)Buttons.RangeSkillBtn).interactable = false;
+        }
 
         //캐릭터 소환창
         Bind<GameObject>(typeof(Objects));
