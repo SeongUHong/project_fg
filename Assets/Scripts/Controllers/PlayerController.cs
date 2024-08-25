@@ -115,7 +115,8 @@ public class PlayerController : BaseController
 
     void FlameBallSkillEvent()
     {
-        data.Skill skill = Managers.Data.GetSKillBySkillIdAndLevel((int)SkillConf.Skill.FlameBall, 1);
+        int skillId = (int)SkillConf.Skill.FlameBall;
+        data.Skill skill = Managers.Data.GetSKillBySkillIdAndLevel(skillId, Managers.Status.GetSkillLevel(skillId));
 
         Managers.Skill.SpawnLaunchSkill(
             SkillConf.LaunchSkill.FlameBall,
@@ -132,7 +133,8 @@ public class PlayerController : BaseController
 
     void RangeSkillEvent()
     {
-        data.Skill skill = Managers.Data.GetSKillBySkillIdAndLevel((int)SkillConf.Skill.DummyRange, 1);
+        int skillId = (int)SkillConf.Skill.DummyRange;
+        data.Skill skill = Managers.Data.GetSKillBySkillIdAndLevel(skillId, Managers.Status.GetSkillLevel(skillId));
 
         Managers.Skill.SpawnRnageSkill(
             SkillConf.RangeSkill.DummyRange,
