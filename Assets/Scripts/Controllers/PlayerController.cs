@@ -46,8 +46,8 @@ public class PlayerController : BaseController
         Managers.Input.AttackEvent += OnAttackBtnDownEvent;
         Managers.Input.FlameBallEvent -= OnFlameBallSkillBtnDownEvent;
         Managers.Input.FlameBallEvent += OnFlameBallSkillBtnDownEvent;
-        Managers.Input.RangeSkillEvent -= OnRangeSkillBtnDownEvent;
-        Managers.Input.RangeSkillEvent += OnRangeSkillBtnDownEvent;
+        Managers.Input.FreezeCircleEvent -= OnFreezeCircleSkillBtnDownEvent;
+        Managers.Input.FreezeCircleEvent += OnFreezeCircleSkillBtnDownEvent;
     }
 
     //조이스틱의 방향을 인자로 받음
@@ -84,11 +84,11 @@ public class PlayerController : BaseController
         }
     }
 
-    void OnRangeSkillBtnDownEvent()
+    void OnFreezeCircleSkillBtnDownEvent()
     {
         if (_rangeSkillFlag)
         {
-            _activeSkillEvent = RangeSkillEvent;
+            _activeSkillEvent = FreezeCircleSkillEvent;
             State = Define.State.Attack;
         }
     }
@@ -130,13 +130,13 @@ public class PlayerController : BaseController
         StartCoroutine(FlameBallCoolTime(skill.cooltime));
     }
 
-    void RangeSkillEvent()
+    void FreezeCircleSkillEvent()
     {
-        int skillId = (int)SkillConf.Skill.DummyRange;
+        int skillId = (int)SkillConf.Skill.FreezeCircle;
         data.Skill skill = Managers.Data.GetSKillBySkillIdAndLevel(skillId, Managers.Status.GetSkillLevel(skillId));
 
         Managers.Skill.SpawnRnageSkill(
-            SkillConf.RangeSkill.DummyRange,
+            SkillConf.RangeSkill.FreezeCircle,
             gameObject,
             skill.active_time,
             skill.tick_interval,

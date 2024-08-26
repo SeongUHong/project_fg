@@ -44,10 +44,10 @@ public class UISceneGame : UIScene
         {
             GetButton((int)Buttons.FlameBallBtn).interactable = false;
         }
-        // RangeSkill
-        if (Managers.Status.IsAvailableSkill((int)SkillConf.Skill.DummyRange))
+        // FreezeCircle
+        if (Managers.Status.IsAvailableSkill((int)SkillConf.Skill.FreezeCircle))
         {
-            BindEvent(GetButton((int)Buttons.RangeSkillBtn).gameObject, (PointerEventData data) => Managers.Input.ExecRangeSkillEvent(data));
+            BindEvent(GetButton((int)Buttons.RangeSkillBtn).gameObject, (PointerEventData data) => Managers.Input.ExecFreezeCircleEvent(data));
         }
         else
         {

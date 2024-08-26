@@ -10,8 +10,8 @@ public class InputManager
     Action _attackEvent;
     // FlameBall スキルイベント
     Action _flameBallEvent;
-    // RangeSkill スキルイベント
-    Action _rangeSkillEvent;
+    // FreezeCircle スキルイベント
+    Action _freezeCircleEvent;
 
     public JoyStickHandler JoyStickHandler
     {
@@ -30,7 +30,7 @@ public class InputManager
 
     public Action AttackEvent { get { return _attackEvent; } set { _attackEvent = value; } }
     public Action FlameBallEvent { get { return _flameBallEvent; } set { _flameBallEvent = value; } }
-    public Action RangeSkillEvent { get { return _rangeSkillEvent; } set { _rangeSkillEvent = value; } }
+    public Action FreezeCircleEvent { get { return _freezeCircleEvent; } set { _freezeCircleEvent = value; } }
 
     //조이스틱, 핸들을 인수로 받음
     public void BindJoyStickEvent(GameObject joyStick, GameObject handle)
@@ -57,11 +57,11 @@ public class InputManager
         _flameBallEvent.Invoke();
     }
 
-    public void ExecRangeSkillEvent(PointerEventData data)
+    public void ExecFreezeCircleEvent(PointerEventData data)
     {
-        if (_rangeSkillEvent == null)
+        if (_freezeCircleEvent == null)
             return;
 
-        _rangeSkillEvent.Invoke();
+        _freezeCircleEvent.Invoke();
     }
 }

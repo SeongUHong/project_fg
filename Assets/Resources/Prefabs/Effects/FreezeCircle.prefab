@@ -14557,6 +14557,9 @@ GameObject:
   - component: {fileID: 4984980826245493072}
   - component: {fileID: 8977316153704399556}
   - component: {fileID: 2879862325604266200}
+  - component: {fileID: -2188659613177665942}
+  - component: {fileID: 8458922715310739995}
+  - component: {fileID: 7181057650675906224}
   m_Layer: 0
   m_Name: FreezeCircle
   m_TagString: Untagged
@@ -19412,6 +19415,45 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!136 &-2188659613177665942
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4932088507883938021}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 3.919694
+  m_Height: 7.839388
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: -0.06884098}
+--- !u!114 &8458922715310739995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4932088507883938021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0889feee3896ff24d8ef66016dba08ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsUsing: 0
+--- !u!114 &7181057650675906224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4932088507883938021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b093b3c27b78e994d8f6108147a0efbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5052240120113588665
 GameObject:
   m_ObjectHideFlags: 0

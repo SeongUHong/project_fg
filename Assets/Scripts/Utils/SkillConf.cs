@@ -3,7 +3,7 @@
     public enum Skill
     {
         FlameBall = 1,
-        DummyRange,
+        FreezeCircle,
     }
 
     public enum LaunchSkill
@@ -13,7 +13,7 @@
 
     public enum RangeSkill
     {
-        DummyRange = Skill.DummyRange,
+        FreezeCircle = Skill.FreezeCircle,
     }
 
     public const int MIN_LEVEL = 1;
