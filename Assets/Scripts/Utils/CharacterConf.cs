@@ -4,6 +4,7 @@
     {
         Knight = 1,
         Sniper,
+        Warrior,
     }
 
     public enum Monster
