@@ -33,6 +33,7 @@ public class StatusManager
         _point = Define.POINT_PER_STAGE;
         _unitLevels.Clear();
         _playerLevel = Define.MIN_PLAYER_LEVEL;
+        _skillLevels.Clear();
     }
 
     // 포인트 소비
