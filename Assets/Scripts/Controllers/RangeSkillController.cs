@@ -14,6 +14,8 @@ public class RangeSkillController : MonoBehaviour
 	protected int _damage;
 	// 対象レイヤー
 	int _layerBit;
+	// スキルが使用者を追いかける速度
+	protected float _followSpeed;
 	// 範囲内に入った対象リスト
 	List<Collider> _targetList = new List<Collider>();
 	
@@ -23,6 +25,7 @@ public class RangeSkillController : MonoBehaviour
 		_activeTime = activeTime;
 		_damage = damage;
 		_tickInterval = tickInterval;
+		_followSpeed = owner.GetComponent<Stat>().MoveSpeed;
 
 		// 対象レイヤーをBitで算出
 		int layerBit = 0;
@@ -44,7 +47,7 @@ public class RangeSkillController : MonoBehaviour
 	void Update()
 	{
 		// スキル使用者を追う
-		gameObject.transform.position = _owner.GetComponent<Collider>().bounds.min;
+		transform.position = Vector3.MoveTowards(transform.position, _owner.GetComponent<Collider>().bounds.min, _followSpeed * Time.deltaTime);
 	}
 
 	// スキルを発動させる
