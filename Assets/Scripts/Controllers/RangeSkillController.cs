@@ -131,5 +131,6 @@ public class RangeSkillController : MonoBehaviour
 	protected void Cleer()
 	{
 		StopCoroutine(StartDamageTick());
+		_targetList.Clear();
 	}
 }
