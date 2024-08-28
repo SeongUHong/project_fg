@@ -9,9 +9,11 @@
 
     public enum Monster
     {
-        EarthElemental = 1,
+        Mimic = 1,
+        EarthElemental,
         FireElemental,
         IceElemental,
+        Beholder,
     }
 
     // 캐릭터 상태의 따른 navMeshAgent의 avoidancePriority값
