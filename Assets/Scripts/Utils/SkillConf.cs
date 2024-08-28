@@ -4,11 +4,13 @@
     {
         FlameBall = 1,
         FreezeCircle,
+        BeholderAttack,
     }
 
     public enum LaunchSkill
     {
         FlameBall = Skill.FlameBall,
+        BeholderAttack = Skill.BeholderAttack,
     }
 
     public enum RangeSkill
