@@ -54,7 +54,7 @@ public class UIScenePrepare : UIScene
         // 스킬 업그레이드 UI 전개
         GameObject skillListPanel = Get<GameObject>((int)Objects.SkillListPanel);
 
-        foreach (SkillConf.Skill skill in Enum.GetValues(typeof(SkillConf.Skill)))
+        foreach (SkillConf.PlayerSkill skill in Enum.GetValues(typeof(SkillConf.PlayerSkill)))
         {
             UIItemSkillUpgrade item = Managers.UI.MakeSubItem<UIItemSkillUpgrade>(skillListPanel.transform);
             // 서브UI를 이곳에서 관리 
