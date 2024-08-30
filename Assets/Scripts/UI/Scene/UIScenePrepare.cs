@@ -14,10 +14,9 @@ public class UIScenePrepare : UIScene
 
     enum Texts
     {
-        StageIdTxt,
+        StageId,
         UpgradePoint,
         PlayerLevel,
-        PlayerLevelUpTxt,
     }
 
     enum Buttons
@@ -36,8 +35,8 @@ public class UIScenePrepare : UIScene
         Bind<Button>(typeof(Buttons));
 
         // 스테이지ID 출력
-        Text stageIdTxt = Get<Text>((int)Texts.StageIdTxt);
-        stageIdTxt.text = $"Stage{Managers.Status.StageId}";
+        Text stageIdTxt = Get<Text>((int)Texts.StageId);
+        stageIdTxt.text = Managers.Status.StageId.ToString();
 
         GameObject unitListPanel = Get<GameObject>((int)Objects.UnitListPanel);
 
@@ -124,11 +123,6 @@ public class UIScenePrepare : UIScene
             Button btn = GetButton((int)Buttons.PlayerLevelUpBtn);
             btn.interactable = false;
             RemoveEvent(btn.gameObject);
-            GetText((int)Texts.PlayerLevelUpTxt).text = UIConf.SKILL_LEVEL_MAX_TXT;
-        }
-        else
-        {
-            GetText((int)Texts.PlayerLevelUpTxt).text = UIConf.SKILL_LEVEL_UP_TXT;
         }
     }
 

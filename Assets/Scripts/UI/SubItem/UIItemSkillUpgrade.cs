@@ -10,7 +10,6 @@ public class UIItemSkillUpgrade : UIBase
 
     enum Texts
     {
-        SkillLevelUpTxt,
         SkillName,
         SkillLevel,
     }
@@ -75,17 +74,12 @@ public class UIItemSkillUpgrade : UIBase
 
         if (Managers.Status.IsAvailableSkill(_skillId))
         {
-            GetText((int)Texts.SkillLevelUpTxt).text = UIConf.SKILL_LEVEL_UP_TXT;
             if (Managers.Status.IsMaxLevelSkill(_skillId))
             {
                 Button btn = GetButton((int)Buttons.SkillLevelUpBtn);
                 btn.interactable = false;
                 RemoveEvent(btn.gameObject);
             }
-        }
-        else
-        {
-            GetText((int)Texts.SkillLevelUpTxt).text = UIConf.SKILL_GET_TXT;
         }
     }
 

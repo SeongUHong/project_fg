@@ -13,7 +13,6 @@ public class UIItemUnitUpgrade : UIBase
 
     enum Texts
     {
-        UnitUpgradeTxt,
         UnitName,
         UnitLevel,
     }
@@ -80,17 +79,12 @@ public class UIItemUnitUpgrade : UIBase
 
         if (Managers.Status.IsAvailableUnit(_unitId))
         {
-            GetText((int)Texts.UnitUpgradeTxt).text = UIConf.SKILL_LEVEL_UP_TXT;
             if (Managers.Status.IsMaxLevelUnit(_unitId))
             {
                 Button btn = GetButton((int)Buttons.UnitUpgradeBtn);
                 btn.interactable = false;
                 RemoveEvent(btn.gameObject);
             }
-        }
-        else
-        {
-            GetText((int)Texts.UnitUpgradeTxt).text = UIConf.SKILL_GET_TXT;
         }
     }
 
