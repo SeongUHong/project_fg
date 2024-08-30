@@ -7,6 +7,17 @@
         BeholderAttack,
     }
 
+    public enum PlayerSkill
+    {
+        FlameBall = Skill.FlameBall,
+        FreezeCircle = Skill.FreezeCircle,
+    }
+
+    public enum MonsterSkill
+    {
+        BeholderAttack = Skill.BeholderAttack,
+    }
+
     public enum LaunchSkill
     {
         FlameBall = Skill.FlameBall,
