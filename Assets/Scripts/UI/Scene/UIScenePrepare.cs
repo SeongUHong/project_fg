@@ -46,7 +46,6 @@ public class UIScenePrepare : UIScene
             // 서브UI를 이곳에서 관리 
             _upgradeItemUIs.Add(item);
 
-            item.SetName(unit.ToString());
             item.SetUnitId((int)unit);
             item.SetParent(this);
         }

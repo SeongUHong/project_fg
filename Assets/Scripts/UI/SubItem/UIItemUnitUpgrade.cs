@@ -13,32 +13,30 @@ public class UIItemUnitUpgrade : UIBase
 
     enum Texts
     {
-        UnitName,
         UnitLevel,
     }
 
-    // 유닛 이미지가 생길때까지 임시로 이름을 표시
-    // ======================차후 수정==================
+    enum Images
+    {
+       UnitIcon,
+    }
+
     int _unitId;
-    string _name;
     UIScenePrepare _parentUI;
 
     public override void Init()
     {
         Bind<Button>(typeof(Buttons));
         Bind<Text>(typeof(Texts));
-
-        GetText((int)Texts.UnitName).text = _name;
+        Bind<Image>(typeof(Images));
 
         BindEvent(GetButton((int)Buttons.UnitUpgradeBtn).gameObject, (PointerEventData data) => UpgradeUnit(data));
 
+        // 아이콘 표시
+        GetImage((int)Images.UnitIcon).sprite = Managers.UI.GetSkillIcon(_unitId);
+
         // 유닛 레벨에 따라 버튼 문구를 변경
         UpdateElements();
-    }
-
-    public void SetName(string name)
-    {
-        _name = name;
     }
 
     public void SetUnitId(int unitId)
