@@ -1,4 +1,5 @@
-﻿using UnityEngine.EventSystems;
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UIItemSkillUpgrade : UIBase
@@ -10,30 +11,32 @@ public class UIItemSkillUpgrade : UIBase
 
     enum Texts
     {
-        SkillName,
         SkillLevel,
     }
 
+    enum Images
+    {
+        SkillIcon,
+    }
+
     int _skillId;
-    string _name;
     UIScenePrepare _parentUI;
 
     public override void Init()
     {
         Bind<Button>(typeof(Buttons));
         Bind<Text>(typeof(Texts));
-
-        GetText((int)Texts.SkillName).text = _name;
+        Bind<Image>(typeof(Images));
 
         BindEvent(GetButton((int)Buttons.SkillLevelUpBtn).gameObject, (PointerEventData data) => UpgradeSkill(data));
 
+        // アイコン表示
+        Sprite icon = Managers.UI.GetSkillIcon(_skillId);
+        Image img = GetImage((int)Images.SkillIcon);
+        img.sprite = icon;
+
         // スキルのレベルに応じて文言変更
         UpdateElements();
-    }
-
-    public void SetName(string name)
-    {
-        _name = name;
     }
 
     public void SetSkillId(int skillId)

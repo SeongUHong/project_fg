@@ -139,6 +139,11 @@ public class UIManager
         return GetIcon($"Units/{unitId}");
     }
 
+    public Sprite GetSkillIcon(int skillId)
+    {
+        return GetIcon($"Skills/{skillId}");
+    }
+
     public void Clear()
     {
     }

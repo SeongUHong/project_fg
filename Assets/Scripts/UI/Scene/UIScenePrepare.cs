@@ -60,7 +60,6 @@ public class UIScenePrepare : UIScene
             // 서브UI를 이곳에서 관리 
             _upgradeSkillUIs.Add(item);
 
-            item.SetName(skill.ToString());
             item.SetSkillId((int)skill);
             item.SetParent(this);
         }
