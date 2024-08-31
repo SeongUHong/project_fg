@@ -11,7 +11,7 @@ public class UIItemSummonUnit : UIBase
         UIItemSummonUnit,
     }
 
-    enum Texts
+    enum Images
     {
         UnitIcon,
     }
@@ -21,7 +21,7 @@ public class UIItemSummonUnit : UIBase
     public override void Init()
     {
         Bind<Button>(typeof(Buttons));
-        Bind<Text>(typeof(Texts));
+        Bind<Image>(typeof(Images));
 
         BindEvent(GetButton((int)Buttons.UIItemSummonUnit).gameObject, (PointerEventData data) => SummonUnit(data));
     }
