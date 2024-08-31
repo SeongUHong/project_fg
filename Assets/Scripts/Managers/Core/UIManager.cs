@@ -124,6 +124,21 @@ public class UIManager
         return popup;
     }
 
+    public Sprite GetIcon(string path)
+    {
+        Sprite icon = Managers.Resource.Load<Sprite>($"Arts/Images/Icons/{path}");
+        if (icon == null)
+        {
+            Debug.Log($"Failed to load icon Sprite. path: (Arts/Images/Icons/{path})");
+        }
+        return icon;
+    }
+
+    public Sprite GetUnitIcon(int unitId)
+    {
+        return GetIcon($"Units/{unitId}");
+    }
+
     public void Clear()
     {
     }
