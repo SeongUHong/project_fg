@@ -61,7 +61,6 @@ public class UISceneGame : UIScene
         foreach (CharacterConf.Unit unit in Managers.Status.GetAvailableUnitIds())
         {
             UIItemSummonUnit item = Managers.UI.MakeSubItem<UIItemSummonUnit>(unitSummonPanel.transform);
-            item.SetName(unit.ToString());
             item.SetUnitId((int)unit);
         }
     }
