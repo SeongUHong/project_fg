@@ -33,7 +33,7 @@ public class UIItemUnitUpgrade : UIBase
         BindEvent(GetButton((int)Buttons.UnitUpgradeBtn).gameObject, (PointerEventData data) => UpgradeUnit(data));
 
         // 아이콘 표시
-        GetImage((int)Images.UnitIcon).sprite = Managers.UI.GetSkillIcon(_unitId);
+        GetImage((int)Images.UnitIcon).sprite = Managers.UI.GetUnitIcon(_unitId);
 
         // 유닛 레벨에 따라 버튼 문구를 변경
         UpdateElements();
