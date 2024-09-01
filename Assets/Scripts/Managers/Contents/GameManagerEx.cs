@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GameManagerEx
 {
@@ -81,7 +82,7 @@ public class GameManagerEx
         }
         _player = player;
         
-        player.transform.position = _unitSpawnPos;
+        player.GetComponent<NavMeshAgent>().Warp(_unitSpawnPos);
 
         return player;
     }
