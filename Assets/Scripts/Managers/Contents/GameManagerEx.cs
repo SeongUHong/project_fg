@@ -131,7 +131,7 @@ public class GameManagerEx
         }
         
         //위치 설정
-        go.transform.position = CreatePos(layer);
+        go.GetComponent<NavMeshAgent>().Warp(CreatePos(layer));
 
         return go;
     }

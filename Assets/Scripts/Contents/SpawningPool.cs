@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public abstract class SpawningPool : MonoBehaviour
 {
@@ -48,8 +49,7 @@ public abstract class SpawningPool : MonoBehaviour
             if (Managers.Game.MonsterNum >= _keepObjectCount)
                 continue;
 
-            GameObject enemy = Managers.Game.Spawn(CharacterPath());
-            enemy.transform.position = _spawnPos;
+            Managers.Game.Spawn(CharacterPath());
         }
     }
 
