@@ -30,12 +30,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1522041035252829709}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -65.89803, y: 0.00015198}
-  m_SizeDelta: {x: 42.789, y: 31.803}
+  m_AnchoredPosition: {x: -205.22, y: 0.00030112}
+  m_SizeDelta: {x: 125.71, y: 67.548}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2528112501053138444
 CanvasRenderer:
@@ -67,11 +67,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_MinSize: 4
+    m_MaxSize: 45
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -109,12 +109,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1522041035252829709}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -111.04, y: 0.030632}
-  m_SizeDelta: {x: 47.495, y: 31.527}
+  m_AnchoredPosition: {x: -333.28, y: 0.00045967}
+  m_SizeDelta: {x: 130.4024, y: 67.5477}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9204443322278532860
 CanvasRenderer:
@@ -146,7 +146,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -187,17 +187,17 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4588583479263177220}
   - {fileID: 2873295500016169622}
   - {fileID: 2555486741061410956}
   - {fileID: 3705891912689205310}
+  - {fileID: 4644081457756090555}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -299.38672, y: -191.79999}
-  m_SizeDelta: {x: -598.7734, y: -383.5951}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -586.8965, y: -474.5}
+  m_SizeDelta: {x: 746.2069, y: 131}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7091827905539645577
 CanvasRenderer:
@@ -267,12 +267,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1522041035252829709}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 37.080353, y: 0.008834094}
-  m_SizeDelta: {x: 31.483398, y: 31.483}
+  m_AnchoredPosition: {x: 91, y: 1.2508}
+  m_SizeDelta: {x: 70.9743, y: 70.0484}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7028411632183823356
 CanvasRenderer:
@@ -312,7 +312,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &3861399878792991171
+--- !u!1 &4131813471125251781
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -320,10 +320,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4588583479263177220}
-  - component: {fileID: 6923761781526868987}
-  - component: {fileID: 4642307186852516626}
-  - component: {fileID: 203424801282685398}
+  - component: {fileID: 4644081457756090555}
+  - component: {fileID: 9071170974979521159}
+  - component: {fileID: 1507840238807848187}
+  - component: {fileID: 3676511021755198318}
   m_Layer: 5
   m_Name: SkillLevelUpBtn
   m_TagString: Untagged
@@ -331,40 +331,40 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &4588583479263177220
+--- !u!224 &4644081457756090555
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3861399878792991171}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 4131813471125251781}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1522041035252829709}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -26.4601, y: 0.030631}
-  m_SizeDelta: {x: 31.5282, y: 31.527}
+  m_AnchoredPosition: {x: -83, y: 1.2508}
+  m_SizeDelta: {x: 65.1448, y: 65.145}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &6923761781526868987
+--- !u!222 &9071170974979521159
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3861399878792991171}
+  m_GameObject: {fileID: 4131813471125251781}
   m_CullTransparentMesh: 1
---- !u!114 &4642307186852516626
+--- !u!114 &1507840238807848187
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3861399878792991171}
+  m_GameObject: {fileID: 4131813471125251781}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -388,13 +388,13 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &203424801282685398
+--- !u!114 &3676511021755198318
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3861399878792991171}
+  m_GameObject: {fileID: 4131813471125251781}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -428,7 +428,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 4642307186852516626}
+  m_TargetGraphic: {fileID: 1507840238807848187}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
