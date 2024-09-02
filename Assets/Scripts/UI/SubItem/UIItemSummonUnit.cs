@@ -8,7 +8,7 @@ public class UIItemSummonUnit : UIBase
 {
     enum Buttons
     {
-        UIItemSummonUnit,
+        SummonBtn,
     }
 
     enum Images
@@ -23,7 +23,7 @@ public class UIItemSummonUnit : UIBase
         Bind<Button>(typeof(Buttons));
         Bind<Image>(typeof(Images));
 
-        BindEvent(GetButton((int)Buttons.UIItemSummonUnit).gameObject, (PointerEventData data) => SummonUnit(data));
+        BindEvent(GetButton((int)Buttons.SummonBtn).gameObject, (PointerEventData data) => SummonUnit(data));
 
         // 유닛 아이콘 표시
         // UISceneGame에서 생성과 동시에 SetUnitId()를 명시적으로 호출
