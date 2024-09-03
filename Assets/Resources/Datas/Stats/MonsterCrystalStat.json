@@ -2,27 +2,7 @@
 	"stats": [
 		{
 			"level":"1",
-			"hp":"10",
-			"offence":"0",
-			"defence":"10",
-			"move_speed":"0",
-			"attack_distance":"0",
-			"attack_speed":"0",
-			"projectile_speed":"0"
-		},
-		{
-			"level":"2",
-			"hp":"20",
-			"offence":"0",
-			"defence":"10",
-			"move_speed":"0",
-			"attack_distance":"0",
-			"attack_speed":"0",
-			"projectile_speed":"0"
-		},
-		{
-			"level":"3",
-			"hp":"30",
+			"hp":"100",
 			"offence":"0",
 			"defence":"10",
 			"move_speed":"0",

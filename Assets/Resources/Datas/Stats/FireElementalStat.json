@@ -2,32 +2,12 @@
 	"stats": [
 		{
 			"level":"1",
-			"hp":"60",
-			"offence":"25",
-			"defence":"5",
-			"move_speed":"4.0",
+			"hp":"50",
+			"offence":"40",
+			"defence":"10",
+			"move_speed":"3.0",
 			"attack_distance":"2.0",
-			"attack_speed":"1.5",
-			"projectile_speed":"0"
-		},
-		{
-			"level":"2",
-			"hp":"60",
-			"offence":"25",
-			"defence":"5",
-			"move_speed":"4.0",
-			"attack_distance":"1.0",
-			"attack_speed":"1.5",
-			"projectile_speed":"0"
-		},
-		{
-			"level":"3",
-			"hp":"60",
-			"offence":"25",
-			"defence":"5",
-			"move_speed":"4.0",
-			"attack_distance":"1.0",
-			"attack_speed":"1.5",
+			"attack_speed":"2.0",
 			"projectile_speed":"0"
 		}
     ]

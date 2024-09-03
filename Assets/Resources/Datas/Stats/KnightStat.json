@@ -3,8 +3,8 @@
 		{
 			"level":"1",
 			"hp":"60",
-			"offence":"25",
-			"defence":"5",
+			"offence":"15",
+			"defence":"10",
 			"move_speed":"4.0",
 			"attack_distance":"2.0",
 			"attack_speed":"1.5",
@@ -13,10 +13,10 @@
 		{
 			"level":"2",
 			"hp":"60",
-			"offence":"25",
-			"defence":"5",
+			"offence":"20",
+			"defence":"15",
 			"move_speed":"4.0",
-			"attack_distance":"1.0",
+			"attack_distance":"2.0",
 			"attack_speed":"1.5",
 			"projectile_speed":"0"
 		},
@@ -24,9 +24,9 @@
 			"level":"3",
 			"hp":"60",
 			"offence":"25",
-			"defence":"5",
+			"defence":"20",
 			"move_speed":"4.0",
-			"attack_distance":"1.0",
+			"attack_distance":"2.0",
 			"attack_speed":"1.5",
 			"projectile_speed":"0"
 		}
