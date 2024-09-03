@@ -2,7 +2,7 @@
 	"skills": [
 		{
 			"level":"1",
-			"offence":"8",
+			"offence":"2",
 			"move_speed":"",
 			"distance": "",
 			"active_time": "3.0",
@@ -11,7 +11,7 @@
 		},
 		{
 			"level":"2",
-			"offence":"14",
+			"offence":"2",
 			"move_speed":"",
 			"distance": "",
 			"active_time": "4.0",
@@ -20,7 +20,7 @@
 		},
 		{
 			"level":"3",
-			"offence":"20",
+			"offence":"3",
 			"move_speed":"",
 			"distance": "",
 			"active_time": "5.0",
