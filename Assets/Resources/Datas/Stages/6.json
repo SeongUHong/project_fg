@@ -1,0 +1,21 @@
+{
+	"spawn_monsters": [
+		{
+			"monster_id": "2",
+			"level": "1",
+			"limit_num": "3"
+		},
+		{
+			"monster_id": "3",
+			"level": "1",
+			"limit_num": "1"
+		},
+		{
+			"monster_id": "5",
+			"level": "1",
+			"limit_num": "3"
+		}
+
+	],
+	"map_id": 1
+}

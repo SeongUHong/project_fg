@@ -3,12 +3,17 @@
 		{
 			"monster_id": "1",
 			"level": "1",
-			"limit_num": "2"
+			"limit_num": "4"
 		},
 		{
 			"monster_id": "5",
 			"level": "1",
-			"limit_num": "1"
+			"limit_num": "2"
+		},
+		{
+			"monster_id": "2",
+			"level": "1",
+			"limit_num": "2"
 		}
 	],
 	"map_id": 1
