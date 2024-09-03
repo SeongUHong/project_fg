@@ -42,7 +42,7 @@ public class Define
     public const int FIRST_STAGE_ID = 1;
 
     // 업그레이드 포인트 부여 수
-    public const int POINT_PER_STAGE = 10;
+    public const int POINT_PER_STAGE = 1;
 
     // 최소 플레이어 레벨
     public const int MIN_PLAYER_LEVEL = 1;
@@ -57,7 +57,7 @@ public class Define
     public const float MAX_SUMMON_GAUGE = 100.0f;
 
     // 캐릭터 소환에 필요한 게이지
-    public const float SUMMON_COST = 10.0f;
+    public const float SUMMON_COST = 25.0f;
 
     // 최소 데미지
     public const int MIN_DAMAGE = 1;
