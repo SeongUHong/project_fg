@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UIItemSummonUnit : UIBase
 {
+    
     enum Buttons
     {
         UIItemSummonUnit,
@@ -26,9 +27,16 @@ public class UIItemSummonUnit : UIBase
         Bind<Text>(typeof(Texts));
 
         GetText((int)Texts.UIItemSummonUnitTxt).text = _name;
+
+
+
         BindEvent(GetButton((int)Buttons.UIItemSummonUnit).gameObject, (PointerEventData data) => SummonUnit(data));
     }
 
+    public void Update()
+    {
+
+    }
     public void SetName(string name)
     {
         _name = name;
@@ -36,6 +44,8 @@ public class UIItemSummonUnit : UIBase
 
     public void SummonUnit(PointerEventData data)
     {
+
         Managers.Game.Spawn(Define.Layer.Unit, $"Units/{_name}");
+
     }
 }

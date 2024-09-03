@@ -25,6 +25,9 @@ public class GameManagerEx : ManagerBase
     //스폰되어 있는 적
     List<GameObject> _monsters = new List<GameObject>();
 
+    //스테이지별 최대 소환가능수
+    public int _summonedUnitCount;
+
 
     public GameObject Player { get { return _player; } }
     public GameObject MonsterCrystal { get { return _monsterCrystal; } }
@@ -48,6 +51,7 @@ public class GameManagerEx : ManagerBase
 
     public override void Init()
     {
+
         GameObject unitSpawnPos = GameObject.Find(Enum.GetName(typeof(Define.SceneLocateObject), Define.SceneLocateObject.UnitSpawnSpot));
         if (unitSpawnPos == null)
         {
@@ -142,22 +146,26 @@ public class GameManagerEx : ManagerBase
     public GameObject Spawn(Define.Layer layer, string path, Transform parent = null)
     {
         GameObject go = Managers.Resource.Instantiate($"Characters/{path}", parent);
-
+        UnitSpawningPool uSp = GameObject.Find("EnemySpawningPool").GetComponent<UnitSpawningPool>();
+        MonsterSpawningPool mSp = GameObject.Find("MonsterSpawningPool").GetComponent<MonsterSpawningPool>();
         switch (layer)
         {
             case Define.Layer.Unit:
                 _units.Add(go);
-                go.AddComponent<SpawningPool>().AddUnitCount(1);
+                uSp.AddUnitCount(1);
+                _summonedUnitCount++;
                 if (AddSqawnAction != null)
                     AddSqawnAction.Invoke(1);
                 break;
             case Define.Layer.Monster:
+                
                 _monsters.Add(go);
-                go.AddComponent<SpawningPool>().AddMonsterCount(1);
+                mSp.AddMonsterCount(1);
                 if (AddSqawnAction != null)
                     AddSqawnAction.Invoke(1);
                 break;
         }
+        
         
         //위치 설정
         go.transform.position = CreatePos(layer);
@@ -168,15 +176,15 @@ public class GameManagerEx : ManagerBase
     public void Despawn(Define.Layer layer, GameObject go)
     {
         SpawningPool sp = go.GetComponent<SpawningPool>();
-
+        UnitSpawningPool uSp = GameObject.Find("EnemySpawningPool").GetComponent<UnitSpawningPool>();
+        MonsterSpawningPool mSp = GameObject.Find("MonsterSpawningPool").GetComponent<MonsterSpawningPool>();
         switch (layer)
         {
             case Define.Layer.Unit:
                 if (_units.Contains(go))
                 {
                     _units.Remove(go);
-
-                    sp.MinusUnitCount(1);
+                    uSp.MinusUnitCount(1);
                     if (AddSqawnAction != null)
                         AddSqawnAction.Invoke(-1);
                 }
@@ -191,7 +199,7 @@ public class GameManagerEx : ManagerBase
                 {
                     _monsters.Remove(go);
 
-                    sp.MinusMonsterCount(1);
+                    mSp.MinusMonsterCount(1);
                     if (AddSqawnAction != null)
                         AddSqawnAction.Invoke(-1);
                 }
@@ -204,5 +212,10 @@ public class GameManagerEx : ManagerBase
         }
 
         Managers.Resource.Destroy(go);
+    }
+
+    public void Clear() {
+        _units.Clear();
+        _monsters.Clear();
     }
 }

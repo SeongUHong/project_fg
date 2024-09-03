@@ -44,7 +44,7 @@ public class Managers : MonoBehaviour
         //매니저 초기화 & 없을 경우 생성
         if(s_instance == null)
         {
-            GameObject go = GameObject.Find("@Managers");
+            GameObject go = GameObject.Find("@Managers");   
             if(go == null)
             {
                 go = new GameObject { name = "@Managers" };
@@ -57,8 +57,8 @@ public class Managers : MonoBehaviour
             //풀 매니저 실행
             s_instance._pool.Init();
 
-/*            //게임 매니저 실행
-            s_instance._game.Init();*/
+            //게임 매니저 실행
+            s_instance._game.Init();
         }
     }
 
@@ -67,5 +67,7 @@ public class Managers : MonoBehaviour
         Pool.Clear();
         Scene.Clear();
         UI.Clear();
+        Resource.Clear();
+        Game.Clear();
     }
 }

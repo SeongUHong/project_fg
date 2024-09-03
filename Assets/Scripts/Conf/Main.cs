@@ -13,6 +13,7 @@ namespace Conf
         public static bool CLEAR_FLAG= false;
         public static int CURRENT_SCENE = 1;
         public static string SCENE_NAME = "GameSceneStage";
+
     }
 
 }

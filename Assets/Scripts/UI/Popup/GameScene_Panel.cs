@@ -20,6 +20,7 @@ public class GameScene_Panel : UIBase
     public void Show()
     {
         new WaitForSeconds(Define.RETRY_DELAY_TIME);
+        Time.timeScale = 0;
         transform.gameObject.SetActive(true);
     }
 
@@ -27,12 +28,14 @@ public class GameScene_Panel : UIBase
     {
 
         //플레이어 생성
-        GameObject player = Managers.Game.InstantiatePlayer();
+        //GameObject player = Managers.Game.InstantiatePlayer();
 
 
         //카메라 설정
-        Util.GetOrAddComponent<CameraController>(Camera.main.gameObject).SetPlayer(player);
+        Util.GetOrAddComponent<CameraController>(Camera.main.gameObject).SetPlayer(Managers.Game.Player);
 
+
+        Time.timeScale = 1;
         Awake();
     }
 
@@ -52,5 +55,6 @@ public class GameScene_Panel : UIBase
         Bind<Button>(typeof(Buttons));
         BindEvent(GetButton((int)Buttons.GameStart_btn).gameObject, (PointerEventData data) => OnClick_Game_Start());
         BindEvent(GetButton((int)Buttons.main_btn).gameObject, (PointerEventData data) => OnClick_Main());
+
     }
 }

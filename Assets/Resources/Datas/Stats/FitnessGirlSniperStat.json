@@ -2,9 +2,9 @@
 	"stats": [
 		{
 			"level":"1",
-			"hp":"30",
+			"hp":"20",
 			"offence":"10",
-			"defence":"2",
+			"defence":"0",
 			"move_speed":"2.0",
 			"attack_distance":"6.0",
 			"attack_speed":"2.0",

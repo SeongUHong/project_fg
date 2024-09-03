@@ -32,7 +32,8 @@ public class UISceneGame : UIScene
     //이미지가 생기면 차후 수정
     string[] _enemyItems = new string[4];
     string[] _unitItems = new string[2];
-    
+
+    GameObject unitSummonPanel;
 
     public override void Init()
     {
@@ -82,6 +83,28 @@ public class UISceneGame : UIScene
             }
         }
 
+    }
+    public void Update()
+    {
+        GameObject unitSummonPanel = Get<GameObject>((int)Object.UnitSummonPanel);
+        UnitSpawningPool uSp = GameObject.Find("EnemySpawningPool").GetComponent<UnitSpawningPool>();
+        int keepCount = uSp.GetKeepObjectCount();
+        int unitCount = uSp.GetUnitCount();
+        int maxCount = uSp.GetMaxUnitCount();
+        
+        if (maxCount == Managers.Game._summonedUnitCount)
+        {
+            unitSummonPanel.transform.gameObject.SetActive(false);
+            return;
+        }
+        else if (keepCount + 1 <= unitCount)
+        {
+            unitSummonPanel.transform.gameObject.SetActive(false);
+        }
+        else if (keepCount + 1 > unitCount)
+        {
+            unitSummonPanel.transform.gameObject.SetActive(true);
+        }
     }
 
 }

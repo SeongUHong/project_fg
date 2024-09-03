@@ -28,7 +28,9 @@ public class Panel_NextStage : UIBase
     {
         Conf.Main.CURRENT_STAGE++;
         Conf.Main.CLEAR_FLAG = false;
-        Conf.Main.CURRENT_SCENE++;
+
+        Managers.Game.Units.Clear();
+        Managers.Game.Monsters.Clear();
 
         Awake();
         SceneManagerEx scene = Managers.Scene;

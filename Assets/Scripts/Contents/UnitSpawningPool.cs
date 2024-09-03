@@ -4,23 +4,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UnitSpawningPool : SpawningPool
-{
+{  
+    private IEnumerator spawnCoroutine;
     protected override void Init()
     {
         base.Init();
         //스폰 지점 초기화
         _spawnPos = Managers.Game.UnitSpawnPos;
+        spawnCoroutine = ReserveSpawn();
 
     }
 
     void Update()
     {
-        while (_reserveCount + _unitCount  <= _keepObjectCount)
+        if (_reserveCount + _unitCount <= _keepObjectCount)
         {
-
-            StartCoroutine(ReserveSpawn());
+            //StartCoroutine(ReserveSpawn());
+        }
+        else
+        {
+            StopCoroutine(ReserveSpawn());
         }
     }
+
 
     //예약된 시간 만큼 뒤에 오브젝트 생성
     protected virtual IEnumerator ReserveSpawn()

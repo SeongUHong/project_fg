@@ -82,4 +82,8 @@ public class ResourceManager : ManagerBase
     {
         throw new System.NotImplementedException(); 
     }
+
+    public void Clear()
+    {
+    }
 }

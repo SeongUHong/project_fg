@@ -17,14 +17,18 @@ public class GameSceneStage4 : BaseScene
         Managers.UI.ShowSceneUI<UISceneGame>();
 
         //적 생산, 아군 생산을 게임 매니저에서 모두 수행할 수 있도록 개선해 보자
-        GameObject enemy = new GameObject(name = "EnemySpawningPool");
-        //UnitSpawningPool enemySpawningPool = Util.GetOrAddComponent<UnitSpawningPool>(enemy);
-        //enemySpawningPool.SetKeepEnemyCount(3);
+        GameObject unit = new GameObject(name = "EnemySpawningPool");
+        UnitSpawningPool UnitSpawningPool = Util.GetOrAddComponent<UnitSpawningPool>(unit);
         GameObject go = new GameObject() { name = "MonsterSpawningPool" };
         MonsterSpawningPool MonsterSpawningPool = Util.GetOrAddComponent<MonsterSpawningPool>(go);
-        keep = 2;
+        keep = 5;
         monsters = keep - 1;
+        UnitSpawningPool.SetKeepObjectCount(keep);
+        UnitSpawningPool.SetMaxUnitCount(keep * 5);
         MonsterSpawningPool.SetKeepMonsterCount(monsters);
+        MonsterSpawningPool.SetKeepMonsterCount(keep*5);
+
+        GameObject player = Managers.Game.InstantiatePlayer();
 
         //씬 오브젝트 이름 변경
         gameObject.name = System.Enum.GetName(typeof(Define.Scenes), _sceneType);
@@ -32,7 +36,7 @@ public class GameSceneStage4 : BaseScene
         start_Panel = Managers.Game.StartPanel;
         start_Panel.Show();
 
-
+        Managers.Game._summonedUnitCount = 0;
 
     }
 

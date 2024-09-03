@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MonsterController : BaseController
 {
     //적 인식 갱신 시간
     [SerializeField]
-    float _updateLockOnInterval = 1.0f;
+    float _updateLockOnInterval = 0.5f;
 
     //타겟 락 함수 실행 플래그
     bool _onLockTargetFlag = true;
 
-    //유닛 리스트
-    List<GameObject> targetList = Managers.Game.Units;
+    
 
     public override void Init()
     {
@@ -47,8 +47,11 @@ public class MonsterController : BaseController
             Managers.UI.MakeWorldUI<UIHpBar>(transform);
         }
 
+        // nav활성
+        gameObject.GetComponent<NavMeshAgent>().enabled = true;
+
         //적 식별 코루틴 실행
-        StartCoroutine(TargetLockCoroutine());
+        //StartCoroutine(TargetLockCoroutine());
     }
 
     protected override void UpdateAlways()
@@ -63,7 +66,8 @@ public class MonsterController : BaseController
             return;
         }*/
 
-
+        if (Managers.Game.MonsterCrystal == null)
+            Despwn();
 
         //타겟 락온 함수를 실행
         if (_onLockTargetFlag)
@@ -71,7 +75,6 @@ public class MonsterController : BaseController
             StartCoroutine(TargetLockCoroutine());
         }
     }
-
     protected override void UpdateMoving()
     {
         //락온된 타겟과의 거리 계산
@@ -90,17 +93,21 @@ public class MonsterController : BaseController
             State = Define.State.Attack;
             return;
         }
-        transform.position += _dir * Time.deltaTime * _stat.MoveSpeed;
+        gameObject.GetComponent<NavMeshAgent>().SetDestination(_lockTarget.transform.position);
+        //transform.position += _dir * Time.deltaTime * _stat.MoveSpeed;
         if (_dir != Vector3.zero) transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_dir), 10 * Time.deltaTime);
     }
 
     protected override void UpdateIdle()
     {
 
-        if (_lockTarget == null || _lockTarget.activeSelf == false) return;
-        State = Define.State.Moving;
-
-
+        if (Managers.Game.Player == null || Managers.Game.Player.activeSelf == false) return;
+        if (_lockTarget != null)
+        {
+            _onLockTargetFlag = true;
+            State = Define.State.Moving;
+        }
+        if (_attackFlag == false) return;
 
     }
 
@@ -109,7 +116,8 @@ public class MonsterController : BaseController
         //타겟이 없을 경우 움직임 멈춤
         if (_lockTarget == null || _lockTarget.activeSelf == false)
         {
-            State = Define.State.Idle;
+            if (_lockTarget == Managers.Game.Player)
+                State = Define.State.Idle;
             return;
         }
 
@@ -138,6 +146,7 @@ public class MonsterController : BaseController
     void EndAttack()
     {
         State = Define.State.Idle;
+        
     }
 
     protected IEnumerator AttackCoolTime()
@@ -157,8 +166,8 @@ public class MonsterController : BaseController
     //지정된 시간만큼 타겟 갱신
     protected IEnumerator TargetLockCoroutine()
     {
-        OnLockTarget();
         yield return new WaitForSeconds(_updateLockOnInterval);
+        OnLockTarget();
     }
 
     //타겟 갱신 함수
@@ -172,20 +181,31 @@ public class MonsterController : BaseController
         _lockTarget = Managers.Game.Player;
         minDis = (Managers.Game.Player.transform.position - transform.position).sqrMagnitude;
 
-
-        foreach (GameObject go in targetList)
+        List<GameObject> targetList = Managers.Game.Units;
+        
+        if (targetList.Count == 0)
         {
-            distance = (go.transform.position - transform.position).sqrMagnitude;
-            if (minDis > distance)
+            _lockTarget = Managers.Game.Player;
+            return;
+        }
+        else
+        {
+            foreach (GameObject go in targetList)
             {
-                minDis = distance;
-                _lockTarget = go;
+                distance = (go.transform.position - transform.position).sqrMagnitude;
+                if (minDis > distance)
+                {
+                    _lockTarget = go;
+                    minDis = distance;
+                    _onLockTargetFlag = false;
+                    break;
+                }
             }
         }
         
-        if (State != Define.State.Die && _lockTarget.GetComponent<Stat>().Hp != 0) {
+        /*if (State != Define.State.Die && _lockTarget.GetComponent<Stat>().Hp != 0) {
             _onLockTargetFlag = true;
-        } 
+        } */
     }
 
     protected override void UpdateClear()
@@ -198,6 +218,7 @@ public class MonsterController : BaseController
     protected override IEnumerator Despwn()
     {
         yield return new WaitForSeconds(Define.DESPAWN_DELAY_TIME);
+        StopCoroutine(TargetLockCoroutine());
         Managers.Game.Despawn(Define.Layer.Monster, gameObject);
     }
 }

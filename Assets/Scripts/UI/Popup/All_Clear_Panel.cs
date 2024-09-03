@@ -30,6 +30,7 @@ public class All_Clear_Panel : UIBase
         Conf.Main.CLEAR_FLAG = false;
         Conf.Main.CURRENT_STAGE = 1;
         Conf.Main.CURRENT_SCENE = 1;
+
     }
     public override void Init()
     {

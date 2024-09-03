@@ -1,12 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class UnitController : BaseController
 {
     //적 인식 갱신 시간
     [SerializeField]
-    float UpdateLockOnInterval = 2.0f;
+    float UpdateLockOnInterval = 0.5f;
 
     //타겟 락 함수 실행 플래그
     bool _onLockTargetFlag = true;
@@ -44,10 +47,11 @@ public class UnitController : BaseController
             Managers.UI.MakeWorldUI<UIHpBar>(transform);
         }
 
-        //플레이어 스테이트초기화
-        //_playerState = Managers.Game.Player.GetComponent<PlayerController>().State;
+        // nav활성
+        gameObject.GetComponent<NavMeshAgent>().enabled = true;
+
         //적 식별 코루틴 실행
-        StartCoroutine(TargetLockCoroutine());
+        //StartCoroutine(TargetLockCoroutine());
 
 
     }
@@ -56,6 +60,9 @@ public class UnitController : BaseController
     protected override void UpdateAlways()
     {
         base.UpdateAlways();
+
+        if (Managers.Game.Player == null)
+            return;
 
 
         //플레이어가 죽으면 정지
@@ -67,13 +74,21 @@ public class UnitController : BaseController
         {
             StartCoroutine(TargetLockCoroutine());
         }
+
+        if (Managers.Game.MonsterCrystal == null)
+            Despwn();
     }
 
     protected override void UpdateIdle()
     {
-        if (_lockTarget == null || _lockTarget.activeSelf == false) return;
-        if (_attackFlag == false) return;
-        State = Define.State.Moving;
+        if (Managers.Game.MonsterCrystal == null || !Managers.Game.MonsterCrystal.activeSelf) return;
+        if(_lockTarget != null)
+        {
+            _onLockTargetFlag = true;
+            State = Define.State.Moving;
+        }
+        if (!_attackFlag) return;
+        
     }
 
     protected override void UpdateMoving()
@@ -84,30 +99,27 @@ public class UnitController : BaseController
             State = Define.State.Idle;
             return;
         }
-
         //락온된 타겟과의 거리 계산
         _destPos = _lockTarget.transform.position - transform.position;
         float dis = _destPos.magnitude;
         _dir = _destPos.normalized;
         if(dis < _stat.AttackDistance)
         {
-            
-            //_stat.OnAttacked(500);
-            //return;
             State = Define.State.Attack;
             return;
         }
-
-        transform.position += _dir * Time.deltaTime * _stat.MoveSpeed;
+        gameObject.GetComponent<NavMeshAgent>().SetDestination(_lockTarget.transform.position);
+        //transform.position += _dir * Time.deltaTime * _stat.MoveSpeed;
         if (_dir != Vector3.zero) transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_dir), 10 * Time.deltaTime);
     }
 
     protected override void UpdateAttack()
     {
         //타겟이 없을 경우 움직임 멈춤
-        if (_lockTarget == null || _lockTarget.activeSelf == false)
+        if (_lockTarget == null || !_lockTarget.activeSelf)
         {
-            State = Define.State.Idle;
+            if (_lockTarget == Managers.Game.Player)
+                State = Define.State.Idle;
             return;
         }
 
@@ -124,18 +136,17 @@ public class UnitController : BaseController
         _onLockTargetFlag = false;
         _unitFlag = false;
         StartCoroutine(Despwn());
-        //base.UpdateDie();
     }
 
     void OnAttack()
     {
         _attackFlag = false;
         //타겟이 비활성화되었을 경우 스킵
-        if (!(_lockTarget == null || _lockTarget.activeSelf == false))
+        if (!(_lockTarget == null || !_lockTarget.activeSelf))
         {
             _lockTarget.GetComponent<Stat>().OnAttacked(_stat.Offence);
         }
-
+        
         //공격 쿨타임
         StartCoroutine(AttackCoolTime());
     }
@@ -143,6 +154,7 @@ public class UnitController : BaseController
     void EndAttack()
     {
         State = Define.State.Idle;
+        
     }
 
     protected IEnumerator AttackCoolTime()
@@ -154,8 +166,8 @@ public class UnitController : BaseController
     //지정된 시간만큼 타겟 갱신
     protected IEnumerator TargetLockCoroutine()
     {
-        OnLockTarget();
         yield return new WaitForSeconds(UpdateLockOnInterval);
+        OnLockTarget();
     }
 
     //타겟 갱신 함수
@@ -164,7 +176,7 @@ public class UnitController : BaseController
         float minDis;
         float distance;
 
-        //기본 타겟으로 크리스탈을 지정
+        //크리스탈이 없을시 실행안함
         if (Managers.Game.MonsterCrystal == null) return;
         _lockTarget = Managers.Game.MonsterCrystal;
         minDis = (Managers.Game.MonsterCrystal.transform.position - transform.position).sqrMagnitude;
@@ -173,7 +185,8 @@ public class UnitController : BaseController
         List<GameObject> targetList = Managers.Game.Monsters;
         if (targetList.Count == 0)
         {
-
+            //기본 타겟으로 크리스탈을 지정
+            _lockTarget = Managers.Game.MonsterCrystal;
             return;
         }
         else
@@ -181,13 +194,16 @@ public class UnitController : BaseController
             foreach (GameObject go in targetList)
             {
                 distance = (go.transform.position - transform.position).sqrMagnitude;
-                if (minDis > distance)
+                if (minDis > distance )
                 {
-                    minDis = distance;
                     _lockTarget = go;
+                    minDis = distance;
+                    _onLockTargetFlag = false;
+                    break;
                 }
             }
         }
+        
     }
 
     protected override void UpdateClear()

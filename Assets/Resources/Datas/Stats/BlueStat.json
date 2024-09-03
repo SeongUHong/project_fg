@@ -2,12 +2,12 @@
 	"stats": [
 		{
 			"level":"1",
-			"hp":"50",
-			"offence":"0",
-			"defence":"5",
-			"move_speed":"4.0",
+			"hp":"45",
+			"offence":"15",
+			"defence":"0",
+			"move_speed":"2.0",
 			"attack_distance":"2",
-			"attack_speed":"1.5",
+			"attack_speed":"1.4",
 			"projectile_speed":"9.0"
 		},
 		{

@@ -8,16 +8,20 @@ public class EnemySpawningPool : SpawningPool
     {
         base.Init();
         //스폰 지점 초기화
-        //_spawnPos = Managers.Game.MonsterSpawnPos;
+        _spawnPos = Managers.Game.UnitSpawnPos;
 
 
     }
 
     void Update()
     {
-        while (_reserveCount < _keepObjectCount)
+        if (_reserveCount + _unitCount <= _keepObjectCount)
         {
-            StartCoroutine(ReserveSpawn());
+            //StartCoroutine(ReserveSpawn());
+        }
+        else
+        {
+            StopCoroutine(ReserveSpawn());
         }
     }
 
@@ -29,5 +33,7 @@ public class EnemySpawningPool : SpawningPool
 
         GameObject character = Managers.Game.Spawn(Define.Layer.Monster, "Units/FitnessGirlSniper");
         character.transform.position = Managers.Game.CreatePos(Define.Layer.Monster);
+        _reserveCount--;
+        
     }
 }
