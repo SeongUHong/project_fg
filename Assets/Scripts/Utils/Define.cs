@@ -51,13 +51,13 @@ public class Define
     public const float INCREASE_GAUGE_INTERVAL = 0.1f;
 
     // 틱당 게이지 증가치
-    public const float INCREASE_SUMMON_GAUGE_PER_TICK = 1.0f;
+    public const float INCREASE_SUMMON_GAUGE_PER_TICK = 0.5f;
 
     // 소환 게이지 최대치
     public const float MAX_SUMMON_GAUGE = 100.0f;
 
     // 캐릭터 소환에 필요한 게이지
-    public const float SUMMON_COST = 25.0f;
+    public const float SUMMON_COST = 30.0f;
 
     // 최소 데미지
     public const int MIN_DAMAGE = 1;
