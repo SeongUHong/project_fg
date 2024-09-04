@@ -148,5 +148,10 @@ public class UIScenePrepare : UIScene
         {
             ui.UpdateElements();
         }
+        
+        foreach (UIItemSkillUpgrade ui in _upgradeSkillUIs)
+        {
+            ui.UpdateElements();
+        }
     }
 }
