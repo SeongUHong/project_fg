@@ -2055,7 +2055,7 @@ namespace AdvancedPeopleSystem
             if (Application.isPlaying || (instanceStatus == CharacterInstanceStatus.NotAPrefabByUser && !igroneUserNonPrefab))
                 return;
 #if UNITY_EDITOR
-            bool stageOpened = UnityEditor.Experimental.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage() != null;
+            bool stageOpened = UnityEditor.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage() != null;
             bool editingInProjectView = (gameObject.scene.name == null);
 
             if (!stageOpened && !editingInProjectView)
