@@ -174,6 +174,15 @@ public abstract class CharacterController : BaseController
         if (!_aliveFlag)
             return;
 
+        SetDieState();
+
+        // 사망 처리
+        Managers.Game.RemoveFromSpawnList(gameObject);
+        StartCoroutine(Despawn());
+    }
+
+    public override void SetDieState()
+    {
         _aliveFlag = false;
         State = Define.State.Die;
 
@@ -183,9 +192,6 @@ public abstract class CharacterController : BaseController
 
         // 사망 후에는 뒤의 캐릭터에 방해가 되지 않도록 콜라이더를 해제
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
-        // 사망 처리
-        Managers.Game.RemoveFromSpawnList(gameObject);
-        StartCoroutine(Despawn());
     }
 
     //사망시 일정시간 후 비활성화

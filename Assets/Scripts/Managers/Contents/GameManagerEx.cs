@@ -29,6 +29,9 @@ public class GameManagerEx
     // 소환 게이지
     SummonGauge _summonGauge;
 
+    // 스포닝 풀
+    public List<SpawningPool> _spawningPools = new List<SpawningPool>();
+
     public GameObject Player { get { return _player; } }
     public GameObject MonsterCrystal { get { return _monsterCrystal; } }
     public List<GameObject> Units { get { return _units; } }
@@ -70,6 +73,7 @@ public class GameManagerEx
     {
         _units.Clear();
         _monsters.Clear();
+        _spawningPools.Clear();
     }
 
     public GameObject InstantiatePlayer()
@@ -203,6 +207,8 @@ public class GameManagerEx
             MonsterSpawningPool monsterSpawningPool = Util.GetOrAddComponent<MonsterSpawningPool>(SpawningPool);
             monsterSpawningPool.Name = monsterName;
             monsterSpawningPool.SetKeepEnemyCount(spawnMonster.limit_num);
+
+            _spawningPools.Add(monsterSpawningPool);
         }
     }
 
@@ -253,6 +259,17 @@ public class GameManagerEx
     // 스테이지 클리어 처리
     public void StageClear()
     {
+        // 몬스터 스폰 정지
+        foreach(SpawningPool pool in _spawningPools)
+        {
+            pool.StopSpawn();
+        }
+
+        // 전 몬스터 디스폰
+        foreach (GameObject monster in _monsters) {
+            monster.GetComponent<BaseController>().SetDieState();
+        }
+
         // 마지막 스테이지인 경우
         if (Managers.Status.IsFinalStage())
         {

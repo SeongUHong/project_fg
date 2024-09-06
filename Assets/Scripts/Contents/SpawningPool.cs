@@ -53,6 +53,12 @@ public abstract class SpawningPool : MonoBehaviour
         }
     }
 
+    // 스폰 중지
+    public void StopSpawn()
+    {
+        StopCoroutine(ReserveSpawn());
+    }
+
     protected abstract Vector3 SpawnPos();
     protected abstract string CharacterPath();
 }
